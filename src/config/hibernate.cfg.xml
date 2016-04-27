@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>
+  <!-- 指定连接数据库的驱动,URL,用户名,密码,方言 -->
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.password">root</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/internshipdb</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+ 
+  <!-- 设定c3p0连接池的属性 -->
+  <property name="hibernate.c3p0.max_size">20</property>
+  <property name="hibernate.c3p0.min_size">1</property>
+  <property name="hibernate.c3p0.timeout">5000</property>
+  <property name="hibernate.c3p0.max_statements">100</property>
+  <property name="hibernate.c3p0.idle_test_period">3000</property>
+  <property name="hibernate.c3p0.acquire_increment">2</property>
+  <property name="hibernate.c3p0.validate">true</property>
+  
+  <!-- 根据需要自动增加数据库表和列 -->
+  <property name="hibernate.hbm2ddl.auto">update</property>
+  <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
+  
+   <!-- 显示持久化所生产的SQL -->
+  <property name="hibernate.show_sql">true</property>
+  <!-- 将SQL格式化后输出 -->
+  <property name="hibernate.format_sql">true</property>
+  
+  <mapping class="bean.User"/>
+  <mapping class="bean.Student"/>
+  <mapping class="bean.Teacher"/>
+  
+ </session-factory>
+</hibernate-configuration>
