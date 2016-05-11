@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+<!-- 方便使用注解注入实例对象 -->
+	<context:component-scan base-package="bean,common,controller,dao,service,test" />
+
+	<bean id="jdbcPropertyConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true"></property>
+		<property name="locations">
+			<list>
+				<value>classpath:/config/mysqljdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 定义数c3p0据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver_class}" />
+		<property name="user" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="minPoolSize" value="${jdbc.min_size}" />
+		<property name="maxPoolSize" value="${jdbc.max_size}" />
+		<property name="maxStatements" value="${jdbc.max_statements}" /><!-- 
+			最大缓存对象 -->
+		<property name="initialPoolSize" value="${jdbc.init_size}" />
+		<property name="maxIdleTime" value="${c3p0.maxIdleTime}" />
+	</bean>
+
+	<!-- 配置hibernate的sessionFactory 注入数据源 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect = ${hibernate.dialect}
+				hibernate.hbm2ddl.auto =update
+				hibernate.temp.use_jdbc_metadata_defaults = false
+				hibernate.show_sql= true
+				hibernate.format_sql = true
+				ibernate.jdbc.batch_size = 50
+			</value>
+		</property>
+		<property name="packagesToScan">
+			<list>
+				<value>bean</value>
+				<value>dao</value>
+				<value>service</value>
+				<value>controller</value>
+			</list>
+		</property>
+	</bean>
+
+	
+	<!-- 事务管理 注：事实上当事务管理器名字为transactionManager时，就不需要加transaction-manager属性 -->
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 配置事务增强处理Bean,指定事务管理器 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<!-- 用于配置详细的事务定义 -->
+		<tx:attributes>
+			<!-- 所有以'get'开头的方法是read-only的 -->
+			<tx:method name="get*" read-only="true" />
+			<!-- 其他方法使用默认的事务设置，指定超时时长为5秒 -->
+			<tx:method name="*" isolation="DEFAULT" propagation="REQUIRED"
+				timeout="5" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- AOP配置的元素 -->
+	<aop:config>
+		<!-- 配置一个切入点 -->
+		<aop:pointcut id="myPointcut"
+			expression="execution(* service.*.*(..))" />
+		<!-- 指定在myPointcut切入点应用txAdvice事务增强处理 -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut" />
+	</aop:config>
+
+</beans>
+
