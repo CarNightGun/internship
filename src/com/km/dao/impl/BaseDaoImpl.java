@@ -11,7 +11,6 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import dao.IBaseDao;
@@ -25,11 +24,6 @@ public class BaseDaoImpl<T, ID extends Serializable> implements IBaseDao<T, ID>
 	@Resource(name = "sessionFactory")
 	private SessionFactory sessionFactory;
 	protected Class<T> entityClass;
-
-	public void setSessionFactory(SessionFactory sessionFactory)
-	{
-		this.sessionFactory = sessionFactory;
-	}
 
 	/**
 	 * 获得session

@@ -50,9 +50,9 @@
 		<servlet-name>spring-mvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	<welcome-file-list>
-		<welcome-file>login</welcome-file>
-	</welcome-file-list>
+<!-- 	<welcome-file-list>
+		<welcome-file>default2</welcome-file>
+	</welcome-file-list> -->
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>/hsrc/html/*</url-pattern>
@@ -72,6 +72,15 @@
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>/hlib/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/default2.css</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/default2.js</url-pattern>
 	</servlet-mapping>
 
 	<error-page>

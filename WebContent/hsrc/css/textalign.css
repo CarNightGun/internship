@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+.gt-left{
+	text-align: left;
+}
+.gt-center{
+	text-align: center;
+}
+.gt-right{
+	text-align: right;
+}

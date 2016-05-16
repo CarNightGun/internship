@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
-import org.springframework.jdbc.core.RowMapper;
-
 /**
  * Dao封装接口
  * @author tcn 空幕  email:1623092203@qq.com time:2016年4月28日下午1:41:26
