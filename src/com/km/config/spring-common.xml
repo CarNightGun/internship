@@ -17,7 +17,7 @@
 		<property name="ignoreUnresolvablePlaceholders" value="true"></property>
 		<property name="locations">
 			<list>
-				<value>classpath:/config/mysqljdbc.properties</value>
+				<value>classpath:/com/km/config/mysqljdbc.properties</value>
 			</list>
 		</property>
 	</bean>

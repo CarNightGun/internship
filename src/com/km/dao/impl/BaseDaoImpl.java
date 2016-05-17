@@ -1,4 +1,4 @@
-package dao.impl;
+package com.km.dao.impl;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -13,7 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import dao.IBaseDao;
+import com.km.dao.IBaseDao;
 
 /**
  * @author tcn 空幕 email:1623092203@qq.com time:2016年4月28日下午3:17:44

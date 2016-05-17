@@ -1,4 +1,4 @@
-package controller;
+package com.km.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import service.IUserService;
+import com.km.service.IUserService;
 
 /**
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月11日下午10:43:52

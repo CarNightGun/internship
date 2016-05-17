@@ -1,4 +1,4 @@
-package common;
+package com.km.util;
 
 public class ISVar
 {

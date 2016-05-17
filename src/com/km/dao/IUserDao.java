@@ -1,4 +1,4 @@
-package dao;
+package com.km.dao;
 
 import java.io.Serializable;
 

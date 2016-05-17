@@ -25,7 +25,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-            classpath:/config/spring-common.xml
+            classpath:/com/km/config/spring-common.xml
         </param-value>
 	</context-param>
 	<servlet>
@@ -34,7 +34,7 @@
 		<init-param>
 			<description>spring mvc</description>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:/config/spring-servlet.xml</param-value>
+			<param-value>classpath:/com/km/config/spring-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

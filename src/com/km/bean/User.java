@@ -1,12 +1,14 @@
-package bean;
+package com.km.bean;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import common.ISVar;
+import com.km.common.bean.AbstratBaseEntity;
+import com.km.util.ISVar;
 
 /**
  * 用户
@@ -16,98 +18,115 @@ import common.ISVar;
 
 @Entity
 @Table
-public class User
+public class User extends AbstratBaseEntity<Long>
 {
 
-	// 主键
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long uid;
+	@Column
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn
+	private Role role;
+
+	@Column
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn
+	private Organization organization;
 
 	// 用户名
-	private String name;
+	@Column
+	private String accountName;
 
 	// 密码
+	@Column
 	private String password;
 
 	// 等级
+	@Column
 	private String level;
 
 	// 头像地址
+	@Column
 	private String photourl;
 
 	// 性别
+	@Column
 	private int sex = ISVar.SEX_UNKNOWN;
 
 	// 真实姓名
+	@Column
 	private String realName;
 
 	// 电话
+	@Column
 	private String phone;
 
 	// 电子邮件
+	@Column
 	private String email;
 
 	// 银行账户
+	@Column
 	private String bankAccount;
 
 	// 身份证号
+	@Column
 	private String IDCardNumber;
 
 	// 银行名称
+	@Column
 	private String bankName;
 
 	// 单位
+	@Column
 	private String units;
 
 	// 二级单位
+	@Column
 	private String secondUnits;
 
 	// 住址
+	@Column
 	private String address;
 
 	// 学号
+	@Column
 	private String studentID;
 
 	// 行政班级ID
+	@Column
 	private String classID;
 
 	// 专业编号
+	@Column
 	private String majorID;
 
 	// 专业名称
+	@Column
 	private String majorName;
 
 	// 年级
+	@Column
 	private String grade;
 
 	// 学制
+	@Column
 	private int lengthSchooling;
 
 	// 工号
+	@Column
 	private String jobNumber;
 
 	// 职称
+	@Column
 	private String professionalTitle;
 
-	public long getUid()
+	public String getAccountName()
 	{
-		return uid;
+		return accountName;
 	}
 
-	public void setUid(long uid)
+	public void setAccountName(String accountName)
 	{
-		this.uid = uid;
-	}
-
-	public String getName()
-	{
-		return name;
-	}
-
-	public void setName(String name)
-	{
-		this.name = name;
+		this.accountName = accountName;
 	}
 
 	public String getPassword()
@@ -319,6 +338,5 @@ public class User
 	{
 		this.professionalTitle = professionalTitle;
 	}
-
 
 }

@@ -1,13 +1,13 @@
-package service.impl;
+package com.km.service.impl;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import service.IUserService;
-import bean.User;
-import dao.IUserDao;
+import com.km.bean.User;
+import com.km.dao.IUserDao;
+import com.km.service.IUserService;
 
 /**
  * @author tcn 空幕  email:1623092203@qq.com time:2016年5月12日下午2:24:42

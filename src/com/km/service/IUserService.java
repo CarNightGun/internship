@@ -1,6 +1,8 @@
-package service;
+package com.km.service;
 
-import bean.User;
+import com.km.bean.User;
+
+
 
 /**
  * @author tcn 空幕  email:1623092203@qq.com time:2016年5月12日下午2:23:31

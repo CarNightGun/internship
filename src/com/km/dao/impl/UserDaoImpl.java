@@ -1,12 +1,12 @@
-package dao.impl;
+package com.km.dao.impl;
 
 import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import bean.User;
-import dao.IUserDao;
+import com.km.bean.User;
+import com.km.dao.IUserDao;
 
 /**
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月12日下午2:54:27
