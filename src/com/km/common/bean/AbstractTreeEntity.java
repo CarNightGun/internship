@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 
 /**
@@ -14,6 +15,7 @@ import javax.persistence.OneToMany;
  * 
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月17日下午12:14:08
  */
+@MappedSuperclass
 public abstract class AbstractTreeEntity<PKUID extends Number, EntityType extends ITree> extends
 		AbstractBaseEntity<PKUID> implements ITree
 {
@@ -33,9 +35,9 @@ public abstract class AbstractTreeEntity<PKUID extends Number, EntityType extend
 	/**
 	 * 父结点
 	 */
-	@Column
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "parent_pkuid",referencedColumnName="pkuid")
+	@JoinColumn(name = "parent_pkuid")
 	private EntityType parent;
 
 	/**

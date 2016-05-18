@@ -21,12 +21,10 @@ import com.km.util.ISVar;
 public class User extends AbstractBaseEntity<Long>
 {
 
-	@Column
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn
 	private Role role;
 
-	@Column
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn
 	private Organization organization;

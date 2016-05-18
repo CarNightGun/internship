@@ -1,9 +1,12 @@
 package com.km.common.bean;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -12,7 +15,7 @@ import javax.persistence.TemporalType;
  * 
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月16日下午11:17:22
  */
-
+@MappedSuperclass
 public abstract class AbstractBaseEntity<PKUID extends Number>
 {
 
@@ -21,7 +24,7 @@ public abstract class AbstractBaseEntity<PKUID extends Number>
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "pkuid")
+	@Column(name = "pkuid",nullable=false)
 	private PKUID pkuid;
 
 	/**
@@ -42,7 +45,7 @@ public abstract class AbstractBaseEntity<PKUID extends Number>
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="createtime",updatable = false)
 	@org.hibernate.annotations.CreationTimestamp
-	private Long createTime;
+	private Date createTime;
 
 	/**
 	 * 更新时间
@@ -50,7 +53,7 @@ public abstract class AbstractBaseEntity<PKUID extends Number>
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="updatetime")
 	@org.hibernate.annotations.UpdateTimestamp
-	private Long updateTime;
+	private Date updateTime;
 
 	public PKUID getPkuid()
 	{
@@ -82,24 +85,26 @@ public abstract class AbstractBaseEntity<PKUID extends Number>
 		this.name = name;
 	}
 
-	public Long getCreateTime()
+	public Date getCreateTime()
 	{
 		return createTime;
 	}
 
-	public void setCreateTime(Long createTime)
+	public void setCreateTime(Date createTime)
 	{
 		this.createTime = createTime;
 	}
 
-	public Long getUpdateTime()
+	public Date getUpdateTime()
 	{
 		return updateTime;
 	}
 
-	public void setUpdateTime(Long updateTime)
+	public void setUpdateTime(Date updateTime)
 	{
 		this.updateTime = updateTime;
 	}
+
+	
 
 }

@@ -12,7 +12,7 @@ import com.km.common.service.ITreeService;
 /**
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月18日上午10:44:12
  */
-public class TreeServiceImpl<PKUID extends Number, EntityType extends AbstractTreeEntity<PKUID, EntityType>, IDaoType extends ITreeDao<PKUID, EntityType>>
+public abstract class TreeServiceImpl<PKUID extends Number, EntityType extends AbstractTreeEntity<PKUID, EntityType>, IDaoType extends ITreeDao<PKUID, EntityType>>
 		extends BaseServiceImpl<PKUID, EntityType, IDaoType> implements
 		ITreeService<PKUID, EntityType, IDaoType>
 {

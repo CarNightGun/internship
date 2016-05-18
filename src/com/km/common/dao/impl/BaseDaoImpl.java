@@ -23,16 +23,21 @@ import com.km.common.dao.IBaseDao;
  * @author tcn 空幕 email:1623092203@qq.com time:2016年4月28日下午3:17:44
  */
 @Repository
-public class BaseDaoImpl<PKUID extends Number, EntityType extends AbstractBaseEntity<PKUID>> implements
+public abstract class BaseDaoImpl<PKUID extends Number, EntityType extends AbstractBaseEntity<PKUID>> implements
 		IBaseDao<PKUID, EntityType>
 {
 	@Resource(name = "sessionFactory")
 	private SessionFactory sessionFactory;
 	protected final Class<EntityType> entityClass;
 
+	@SuppressWarnings("unchecked")
 	public BaseDaoImpl()
 	{
-		this.entityClass = this.getEntityClass();
+		Type type = getClass().getGenericSuperclass();
+		if(!(type instanceof ParameterizedType)){
+			type = getClass().getSuperclass().getGenericSuperclass();
+		}
+			this.entityClass = (Class<EntityType>)((ParameterizedType)type).getActualTypeArguments()[1];			
 	}
 
 	/**
@@ -49,13 +54,14 @@ public class BaseDaoImpl<PKUID extends Number, EntityType extends AbstractBaseEn
 	@SuppressWarnings("unchecked")
 	protected Class<EntityType> getEntityClass()
 	{
-		if (entityClass == null)
+		if (this.entityClass == null)
 		{
 			ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
 			Type[] type = pt.getActualTypeArguments();
 			return (Class<EntityType>) type[0];
+//			return (Class<EntityType>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];			
 		}
-		return entityClass;
+		return this.entityClass;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -143,7 +149,7 @@ public class BaseDaoImpl<PKUID extends Number, EntityType extends AbstractBaseEn
 	@Override
 	public Long countByHql(String whereHql, Object... values)
 	{
-		String hql = "select count(*) from " + getEntityClass().getSimpleName() + whereHql;
+		String hql = "select count(*) from " + this.entityClass.getSimpleName() + whereHql;
 		Query query = this.currentSession().createQuery(hql);
 		this.setParameters(query, values);
 		return (Long) query.uniqueResult();

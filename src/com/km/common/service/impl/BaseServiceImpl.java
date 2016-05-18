@@ -1,5 +1,7 @@
 package com.km.common.service.impl;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -15,12 +17,19 @@ import com.km.util.page.PageUtil;
 /**
  * @author tcn 空幕  email:1623092203@qq.com time:2016年5月18日上午10:19:16
  */
-public class BaseServiceImpl<PKUID extends Number,EntityType extends AbstractBaseEntity<PKUID>,DaoType extends IBaseDao<PKUID, EntityType>> implements IBaseService<PKUID, EntityType , DaoType>
+public abstract class BaseServiceImpl<PKUID extends Number,EntityType extends AbstractBaseEntity<PKUID>,DaoType extends IBaseDao<PKUID, EntityType>> implements IBaseService<PKUID, EntityType , DaoType>
 {
 	protected DaoType baseDao;
+//	protected final Class<EntityType> entityClass;
 	
+	@SuppressWarnings("unchecked")
 	public BaseServiceImpl(DaoType baseDao)
 	{
+//		Type type = getClass().getGenericSuperclass();
+//		if(!(type instanceof ParameterizedType)){
+//			type = getClass().getSuperclass().getGenericSuperclass();
+//		}
+//		this.entityClass = (Class<EntityType>)((ParameterizedType)type).getActualTypeArguments()[1];
 		this.baseDao = baseDao;
 	}
 	

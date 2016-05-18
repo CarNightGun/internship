@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import com.km.common.bean.AbstractTreeEntity;
 
@@ -16,7 +18,8 @@ import com.km.common.bean.AbstractTreeEntity;
  * 
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月17日上午12:40:54
  */
-
+@Entity
+@Table
 public class Authority extends AbstractTreeEntity<Long, Authority>
 {
 

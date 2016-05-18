@@ -28,35 +28,38 @@
             classpath:/com/km/config/spring-common.xml
         </param-value>
 	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>
+			classpath:/com/km/config/log4j.properties
+		</param-value>
+	</context-param>
+
 	<servlet>
-		<servlet-name>spring-mvc</servlet-name>
+		<servlet-name>internship</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
-			<description>spring mvc</description>
+			<description>internship code by km</description>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:/com/km/config/spring-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	<filter>
-		<filter-name>openSession</filter-name>
-		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>openSession</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	<!-- <filter> <filter-name>openSession</filter-name> <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class> 
+		</filter> <filter-mapping> <filter-name>openSession</filter-name> <url-pattern>/*</url-pattern> 
+		</filter-mapping> -->
 	<servlet-mapping>
-		<servlet-name>spring-mvc</servlet-name>
+		<servlet-name>internship</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-<!-- 	<welcome-file-list>
-		<welcome-file>default2</welcome-file>
-	</welcome-file-list> -->
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>/hsrc/html/*</url-pattern>
-	</servlet-mapping>
+
+
+	<!-- <welcome-file-list> <welcome-file>default2</welcome-file> </welcome-file-list> -->
+
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>/hsrc/js/*</url-pattern>
@@ -73,16 +76,11 @@
 		<servlet-name>default</servlet-name>
 		<url-pattern>/hlib/*</url-pattern>
 	</servlet-mapping>
-	
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>/default2.css</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>/default2.js</url-pattern>
-	</servlet-mapping>
 
+	<error-page>
+		<error-code>403</error-code>
+		<location>/hsrc/html/error/403.html</location>
+	</error-page>
 	<error-page>
 		<error-code>404</error-code>
 		<location>/hsrc/html/error/404.html</location>
@@ -90,5 +88,9 @@
 	<error-page>
 		<error-code>500</error-code>
 		<location>/hsrc/html/error/500.html</location>
+	</error-page>
+	<error-page>
+		<error-code>503</error-code>
+		<location>/hsrc/html/error/503.html</location>
 	</error-page>
 </web-app>
