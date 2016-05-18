@@ -17,28 +17,7 @@ public class MyInterceptor extends HandlerInterceptorAdapter
 	{
 		String uri = request.getRequestURI();
 		System.out.println("uri: " + uri);
-		if (uri.endsWith("/loginIn") || uri.endsWith("/loginOut"))
-		{
-			return true;
-		}
-
-		if (uri.endsWith("/login") || uri.endsWith("/internship"))
-		{
-			if (request.getSession() != null && request.getSession().getAttribute("loginUser") != null)
-			{
-				response.sendRedirect(request.getContextPath() + "/index");
-			} else
-			{
-				return true;
-			}
-		}
-
-		if (request.getSession() != null && request.getSession().getAttribute("loginUser") != null)
-		{
-			return true;
-		}
-
-		response.sendRedirect(request.getContextPath() + "/login");
-		return false;
+		
+		return true;
 	}
 }

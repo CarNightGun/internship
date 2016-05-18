@@ -18,26 +18,26 @@ import com.km.service.IUserService;
 @RequestMapping("/user")
 public class UserCtrl
 {
-	@Resource(name="userServiceImpl")
-	private IUserService userServiceImpl;
-	
-	@RequestMapping(value = "/loginIn", method = RequestMethod.POST)
-	public String loginIn(@RequestParam(value = "username", required = true) String username,
-			@RequestParam(value = "password", required = true) String password ,HttpSession session,ModelMap model)
-	{
-		if("" == password.trim() || "" == username.trim()){
-			model.addAttribute("errorInfo", "用户名或者密码格式不正确");
-			return "login";
-		}
-		
-		if(this.userServiceImpl.loginIn(username, password) == null){
-			model.addAttribute("errorInfo", "用户名或密码错误");
-			return "login";
-		}
-		return "resetPassword";
-	}
+//	@Resource(name="userServiceImpl")
+//	private IUserService userServiceImpl;
+//	
+//	@RequestMapping(value = "/loginIn", method = RequestMethod.POST)
+//	public String loginIn(@RequestParam(value = "username", required = true) String username,
+//			@RequestParam(value = "password", required = true) String password ,HttpSession session,ModelMap model)
+//	{
+//		if("" == password.trim() || "" == username.trim()){
+//			model.addAttribute("errorInfo", "用户名或者密码格式不正确");
+//			return "login";
+//		}
+//		
+//		if(this.userServiceImpl.loginIn(username, password) == null){
+//			model.addAttribute("errorInfo", "用户名或密码错误");
+//			return "login";
+//		}
+//		return "resetPassword";
+//	}
 
-	@RequestMapping(value = "/loginOut", method = RequestMethod.POST)
+	@RequestMapping(value = "/loginOut", method = RequestMethod.GET)
 	public String loginOut()
 	{
 		

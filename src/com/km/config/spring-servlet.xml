@@ -20,7 +20,7 @@
 
 
 	<!-- controller包(自动注入) -->
-	<context:component-scan base-package="com.km.controller,com.km.common.controller"
+	<context:component-scan base-package="com.km"
 		use-default-filters="false">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />

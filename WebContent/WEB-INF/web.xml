@@ -66,6 +66,10 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
+		<url-pattern>/hsrc/html/error/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
 		<url-pattern>/hsrc/css/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
@@ -74,7 +78,7 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
-		<url-pattern>/hlib/*</url-pattern>
+		<url-pattern>/hlib_old/*</url-pattern>
 	</servlet-mapping>
 
 	<error-page>
