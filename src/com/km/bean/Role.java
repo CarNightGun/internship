@@ -10,7 +10,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.km.common.bean.AbstratBaseEntity;
+import com.km.common.bean.AbstractBaseEntity;
 
 /**
  * 角色
@@ -19,7 +19,7 @@ import com.km.common.bean.AbstratBaseEntity;
  */
 @Entity
 @Table
-public class Role extends AbstratBaseEntity<Long>
+public class Role extends AbstractBaseEntity<Long>
 {
 	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinTable(name = "role_authority", joinColumns =

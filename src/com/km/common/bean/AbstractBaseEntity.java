@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月16日下午11:17:22
  */
 
-public abstract class AbstratBaseEntity<PkUid extends Number>
+public abstract class AbstractBaseEntity<PKUID extends Number>
 {
 
 	/**
@@ -22,25 +22,25 @@ public abstract class AbstratBaseEntity<PkUid extends Number>
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "pkuid")
-	private PkUid pkuid;
+	private PKUID pkuid;
 
 	/**
 	 * 标记实体是否审核 0false否 1true是
 	 */
-	@Column
+	@Column(name="audit")
 	private boolean aduit = false;
 
 	/**
 	 * 名称
 	 */
-	@Column
+	@Column(name="name")
 	private String name;
 
 	/**
 	 * 创建时间
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(updatable = false)
+	@Column(name="createtime",updatable = false)
 	@org.hibernate.annotations.CreationTimestamp
 	private Long createTime;
 
@@ -48,16 +48,16 @@ public abstract class AbstratBaseEntity<PkUid extends Number>
 	 * 更新时间
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column
+	@Column(name="updatetime")
 	@org.hibernate.annotations.UpdateTimestamp
 	private Long updateTime;
 
-	public PkUid getPkuid()
+	public PKUID getPkuid()
 	{
 		return pkuid;
 	}
 
-	public void setPkuid(PkUid pkuid)
+	public void setPkuid(PKUID pkuid)
 	{
 		this.pkuid = pkuid;
 	}

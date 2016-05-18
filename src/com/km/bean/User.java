@@ -7,7 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.km.common.bean.AbstratBaseEntity;
+import com.km.common.bean.AbstractBaseEntity;
 import com.km.util.ISVar;
 
 /**
@@ -18,7 +18,7 @@ import com.km.util.ISVar;
 
 @Entity
 @Table
-public class User extends AbstratBaseEntity<Long>
+public class User extends AbstractBaseEntity<Long>
 {
 
 	@Column

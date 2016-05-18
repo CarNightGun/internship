@@ -18,7 +18,7 @@ public class UserServiceImpl implements IUserService
 {
 	
 	@Resource(name="userDaoImpl")
-	private IUserDao<User> userDaoImpl;
+	private IUserDao userDaoImpl;
 
 	@Override
 	public User loginIn(String username, String password)

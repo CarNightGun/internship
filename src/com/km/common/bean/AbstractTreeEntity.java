@@ -14,8 +14,8 @@ import javax.persistence.OneToMany;
  * 
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月17日下午12:14:08
  */
-public abstract class AbstractTreeEntity<PkUid extends Number, EntityType extends ITree> extends
-		AbstratBaseEntity<PkUid> implements ITree
+public abstract class AbstractTreeEntity<PKUID extends Number, EntityType extends ITree> extends
+		AbstractBaseEntity<PKUID> implements ITree
 {
 
 	/**

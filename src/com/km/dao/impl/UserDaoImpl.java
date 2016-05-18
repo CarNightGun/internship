@@ -1,18 +1,18 @@
 package com.km.dao.impl;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.km.bean.User;
+import com.km.common.dao.impl.BaseDaoImpl;
 import com.km.dao.IUserDao;
 
 /**
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月12日下午2:54:27
  */
 @Repository
-public class UserDaoImpl extends BaseDaoImpl<User, Serializable> implements IUserDao<User>
+public class UserDaoImpl extends BaseDaoImpl<Long,User> implements IUserDao
 {
 
 	@Override
