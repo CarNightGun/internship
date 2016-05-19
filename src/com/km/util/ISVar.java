@@ -1,5 +1,7 @@
 package com.km.util;
 
+import javax.persistence.MappedSuperclass;
+
 public class ISVar
 {
 	// 性别
@@ -27,5 +29,8 @@ public class ISVar
 	 * 默认头像
 	 */
 	public static final String URL_DEFAULT_HEAD = "/internship/WebContent/hsrc/image/defaultHead.jpg";
+	
+	
+	
 
 }

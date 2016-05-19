@@ -50,7 +50,7 @@ public class PageUtil
 		return start;
 	}
 
-	public String resolveUrl(String url, String queryString, Integer pageNo, Integer pageSize)
+	public static String resolveUrl(String url, String queryString, Integer pageNo, Integer pageSize)
 	{
 		if (queryString == null)
 		{

@@ -7,31 +7,31 @@
 	</classpathentry>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/ApacheTomcat v8.0"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/my-junit4">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/my-junit4">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/my-hibernate4-c3p0">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/my-hibernate4-c3p0">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/my-mysql5driver">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/my-mysql5driver">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/my-spring4">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/my-spring4">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/my-commons">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/my-commons">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

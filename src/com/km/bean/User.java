@@ -337,4 +337,24 @@ public class User extends AbstractBaseEntity<Long>
 		this.professionalTitle = professionalTitle;
 	}
 
+	public Role getRole()
+	{
+		return role;
+	}
+
+	public void setRole(Role role)
+	{
+		this.role = role;
+	}
+
+	public Organization getOrganization()
+	{
+		return organization;
+	}
+
+	public void setOrganization(Organization organization)
+	{
+		this.organization = organization;
+	}
+
 }

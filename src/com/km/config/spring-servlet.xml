@@ -38,20 +38,18 @@
 	<!-- 配置拦截器 -->
 		<mvc:interceptors>
 			<mvc:interceptor>
-				<mvc:mapping path="/*" />
+				<mvc:mapping path="*" />
 				<bean class="com.km.common.controller.MyInterceptor"></bean>
 			</mvc:interceptor>
-			
 		</mvc:interceptors>
 
+	<!-- 没有url路径时候默认配置 为主页 -->
+	<mvc:view-controller path="/" view-name="forward:/home/index" />
 
 	<!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:contentType ="text/html" p:prefix="/WEB-INF/view/" p:suffix=".jsp" />
-
-	<!-- 没有url路径时候默认配置 为主页 -->
-	<mvc:view-controller path="/" view-name="forward:/home/index" />
 	
 	<!-- 文件上传配置 -->
 	<bean id="multipartResolver"
