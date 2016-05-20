@@ -36,9 +36,9 @@ public class UserCtrl extends BaseController
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model)
 	{
-		if (!model.containsAttribute("contentModel"))
+		if (!model.containsAttribute(contentModel))
 		{
-			model.addAttribute("contentModel", new UserLoginModel());
+			model.addAttribute(contentModel, new UserLoginModel());
 		}
 
 		return "user/login";
@@ -46,7 +46,7 @@ public class UserCtrl extends BaseController
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpServletRequest request, Model model,
-			@Valid @ModelAttribute("contentModel") UserLoginModel userLoginModel,
+			@Valid @ModelAttribute(contentModel) UserLoginModel userLoginModel,
 			BindingResult result)
 	{
 		// 已经有错误就返回
@@ -58,13 +58,13 @@ public class UserCtrl extends BaseController
 				.getPassword().trim());
 		if (user == null)
 		{
-			result.addError(new FieldError("contentModel", "errorLoginInfo", "用户名或密码错误。"));
+			result.addError(new FieldError(contentModel, "errorLoginInfo", "用户名或密码错误。"));
 		} else if (!user.isAduit())
 		{
-			result.addError(new FieldError("contentModel", "errorLoginInfo", "此用户未启用"));
+			result.addError(new FieldError(contentModel, "errorLoginInfo", "此用户未启用"));
 		} else if (user.getRole() == null)
 		{
-			result.addError(new FieldError("contentModel", "errorLoginInfo", "此用户没有权限登录"));
+			result.addError(new FieldError(contentModel, "errorLoginInfo", "此用户没有权限登录"));
 		}
 		if (result.hasErrors())
 		{

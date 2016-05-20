@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,15 +15,15 @@ import com.km.dao.IUserDao;
 import com.km.service.IUserService;
 
 /**
- * @author tcn 空幕  email:1623092203@qq.com time:2016年5月12日下午2:24:42
+ * @author tcn 空幕 email:1623092203@qq.com time:2016年5月12日下午2:24:42
  */
 @Service
 @Transactional
-public class UserServiceImpl extends BaseServiceImpl<Long, User, IUserDao>implements IUserService
+public class UserServiceImpl extends BaseServiceImpl<Long, User, IUserDao> implements IUserService
 {
-	
 
-	public UserServiceImpl(@Qualifier("IUserDao")IUserDao  baseDao)
+	@Autowired
+	public UserServiceImpl(@Qualifier("userDaoImpl") IUserDao baseDao)
 	{
 		super(baseDao);
 	}
@@ -33,12 +34,13 @@ public class UserServiceImpl extends BaseServiceImpl<Long, User, IUserDao>implem
 	{
 		Criteria criteria = baseDao.getCriteria();
 		criteria.add(Restrictions.eq("accountName", username));
-		criteria.add(Restrictions.eq("password",password));	
-		List<User> users=criteria.list();
-		
-		User user=null;
-		if(users!=null && !users.isEmpty()){
-			user=users.get(0);			
+		criteria.add(Restrictions.eq("password", password));
+		List<User> users = criteria.list();
+
+		User user = null;
+		if (users != null && !users.isEmpty())
+		{
+			user = users.get(0);
 		}
 		return user;
 	}

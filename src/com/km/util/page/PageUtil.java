@@ -1,5 +1,7 @@
 package com.km.util.page;
 
+import java.util.List;
+
 /**
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月18日上午9:55:45
  */
@@ -73,5 +75,11 @@ public class PageUtil
 		}
 
 		return queryString.isEmpty() ? url : url + "?" + queryString;
+	}
+	
+	public static <EntityType> PageList<EntityType> getPageList(int pageSize, int currentPageNo, int itemsCount,
+			List<EntityType> items)
+	{
+		return new PageList<EntityType>(pageSize, currentPageNo, itemsCount, items);
 	}
 }

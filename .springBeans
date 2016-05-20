@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/com/km/config/spring-common.xml</config>
 		<config>src/com/km/config/spring-servlet.xml</config>
+		<config>src/com/km/config/mybean.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

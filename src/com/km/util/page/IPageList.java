@@ -2,10 +2,11 @@ package com.km.util.page;
 
 import java.util.List;
 
+
 /**
  * @author tcn 空幕  email:1623092203@qq.com time:2016年5月18日上午9:19:09
  */
-public interface IPageList<T>
+public interface IPageList<EntityType>
 {
 	/**
 	 * 获取页面大小
@@ -51,10 +52,10 @@ public interface IPageList<T>
 	 */
 	public boolean isHasNext();
 	
-	/**
-	 * 获取数据
-	 * @author tcn 空幕  2016年5月18日上午9:42:13
-	 * @return 页面数据集合
-	 */
-	public List<T> getItems();
+//	/**
+//	 * 获取数据
+//	 * @author tcn 空幕  2016年5月18日上午9:42:13
+//	 * @return 页面数据集合
+//	 */
+//	public  List<EntityType> getItems();
 }

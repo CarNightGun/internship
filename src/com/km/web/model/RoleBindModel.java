@@ -6,7 +6,7 @@ package com.km.web.model;
 public class RoleBindModel
 {
 	private String name;	
-	private Integer[] authorityIds;
+	private Long[] authorityIds;
 	public String getName()
 	{
 		return name;
@@ -15,11 +15,11 @@ public class RoleBindModel
 	{
 		this.name = name;
 	}
-	public Integer[] getAuthorityIds()
+	public Long[] getAuthorityIds()
 	{
 		return authorityIds;
 	}
-	public void setAuthorityIds(Integer[] authorityIds)
+	public void setAuthorityIds(Long[] authorityIds)
 	{
 		this.authorityIds = authorityIds;
 	}

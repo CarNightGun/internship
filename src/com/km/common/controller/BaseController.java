@@ -17,16 +17,18 @@ public abstract class BaseController
 	protected final String contentModel="contentModel";
 	protected final String treeDataSource="treeDataSource";
 	protected final String selectDataSource="selectDataSource";
+	protected final String requestUrl="requestUrl";
+	protected final String requestQuery="requestQuery";
 	
-    @Resource(name = "RoleServiceImpl")
+    @Resource(name = "roleServiceImpl")
     protected IRoleService roleService;
 	
-    @Resource(name = "UserServiceImpl")
+    @Resource(name = "userServiceImpl")
     protected IUserService userService;
 	
-    @Resource(name = "AuthorityServiceImpl")
+    @Resource(name = "authorityServiceImpl")
 	protected IAuthorityService authorityService;
 	
-    @Resource(name = "OrganizationServiceImpl")
+    @Resource(name = "organizationServiceImpl")
 	protected IOrganizationService organizationService;
 }

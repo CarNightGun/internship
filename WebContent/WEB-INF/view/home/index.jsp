@@ -21,7 +21,7 @@
    <link href="<c:url value='/plugins/fullcalendar/fullcalendar/fullcalendar.css'/>" rel="stylesheet" type="text/css"/>
    <!-- 结束页面级插件样式 -->
    
-   <link rel="shortcut icon" href="favicon.ico" />
+   <!-- <link rel="shortcut icon" href="favicon.ico" /> -->
 </head>
 <!-- 结束头部 -->
 

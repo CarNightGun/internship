@@ -1,7 +1,5 @@
 package com.km.common.service.impl;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +9,6 @@ import com.km.common.bean.AbstractBaseEntity;
 import com.km.common.dao.IBaseDao;
 import com.km.common.service.IBaseService;
 import com.km.util.page.IPageList;
-import com.km.util.page.PageList;
 import com.km.util.page.PageUtil;
 
 /**
@@ -22,7 +19,6 @@ public abstract class BaseServiceImpl<PKUID extends Number,EntityType extends Ab
 	protected DaoType baseDao;
 //	protected final Class<EntityType> entityClass;
 	
-	@SuppressWarnings("unchecked")
 	public BaseServiceImpl(DaoType baseDao)
 	{
 //		Type type = getClass().getGenericSuperclass();
@@ -118,12 +114,13 @@ public abstract class BaseServiceImpl<PKUID extends Number,EntityType extends Ab
 		return this.listPage(pageNo, PageUtil.DEFAULT_PAGE_SIZE);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public IPageList<EntityType> listPage(int pageNo, int pageSize)
 	{
 		Integer itemsCount = countAll();
 	    List<EntityType> items = this.baseDao.listPage((pageNo-1)*pageSize, pageSize);
-	    return PageList.getPageList(pageSize, pageNo, itemsCount, items);
+	    return PageUtil.getPageList(pageSize, pageNo, itemsCount, items);
 	}
 
 	@Override

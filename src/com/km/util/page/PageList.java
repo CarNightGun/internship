@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月18日上午9:32:48
  */
-public class PageList<T> implements IPageList<T>
+public  class  PageList<EntityType> implements IPageList<EntityType>
 {
 	private int pageSize;
 
@@ -19,9 +19,9 @@ public class PageList<T> implements IPageList<T>
 
 	private boolean isHasNext;
 
-	private List<T> items;
+	private List<EntityType> items;
 
-	public PageList(int pageSize, int currentPageNo, int itemsCount, List<T> items)
+	public PageList(int pageSize, int currentPageNo, int itemsCount, List<EntityType> items)
 	{
 		this.pageSize = pageSize;
 		this.pageCount = (itemsCount % pageSize == 0) ? itemsCount / pageSize : itemsCount
@@ -68,15 +68,15 @@ public class PageList<T> implements IPageList<T>
 	{
 		return this.isHasNext;
 	}
+	
 
-	public List<T> getItems()
+	public  List<EntityType> getItems()
 	{
 		return this.items;
 	}
+	
 
-	public static <T> PageList<T> getPageList(int pageSize, int currentPageNo, int itemsCount,
-			List<T> items)
-	{
-		return new PageList<T>(pageSize, currentPageNo, itemsCount, items);
-	}
+	
+
+	
 }

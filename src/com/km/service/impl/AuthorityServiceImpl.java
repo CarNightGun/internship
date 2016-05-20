@@ -1,5 +1,7 @@
 package com.km.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.km.bean.Authority;
@@ -8,13 +10,14 @@ import com.km.dao.IAuthorityDao;
 import com.km.service.IAuthorityService;
 
 /**
- * @author tcn 空幕  email:1623092203@qq.com time:2016年5月20日上午8:34:29
+ * @author tcn 空幕 email:1623092203@qq.com time:2016年5月20日上午8:34:29
  */
 @Service
-public class AuthorityServiceImpl extends TreeServiceImpl<Long, Authority, IAuthorityDao> implements IAuthorityService
+public class AuthorityServiceImpl extends TreeServiceImpl<Long, Authority, IAuthorityDao> implements
+		IAuthorityService
 {
-
-	public AuthorityServiceImpl(IAuthorityDao baseDao)
+	@Autowired
+	public AuthorityServiceImpl(@Qualifier("authorityDaoImpl") IAuthorityDao baseDao)
 	{
 		super(baseDao);
 	}

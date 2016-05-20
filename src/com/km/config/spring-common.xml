@@ -24,6 +24,9 @@
 			expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 
+   <bean id="springUtil" class="com.km.util.SpringUtil"></bean>
+   <import resource="mybean.xml"/>
+   
 
 
 	<bean id="jdbcPropertyConfig"

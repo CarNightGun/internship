@@ -7,15 +7,15 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class RoleEditModel
 {
-	private Integer id;
+	private Long id;
 	@NotEmpty(message="{name.not.empty}")
 	private String name;
 	
-	public Integer getId()
+	public Long getId()
 	{
 		return id;
 	}
-	public void setId(Integer id)
+	public void setId(Long id)
 	{
 		this.id = id;
 	}

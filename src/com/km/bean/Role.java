@@ -17,6 +17,7 @@ import com.km.common.bean.AbstractBaseEntity;
  * 
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月17日下午12:09:00
  */
+
 @Entity
 @Table
 public class Role extends AbstractBaseEntity<Long>
@@ -37,4 +38,15 @@ public class Role extends AbstractBaseEntity<Long>
 		this.authorities = authorities;
 	}
 
+	@Override
+	public String toString()
+	{
+		return "Role [authorities=" + authorities + ", getAuthorities()=" + getAuthorities()
+				+ ", getPkuid()=" + getPkuid() + ", isAduit()=" + isAduit() + ", getName()="
+				+ getName() + ", getCreateTime()=" + getCreateTime() + ", getUpdateTime()="
+				+ getUpdateTime() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+
+	
 }
