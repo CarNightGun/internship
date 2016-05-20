@@ -1,4 +1,4 @@
-package com.km.common.bean;
+package com.km.web.auth;
 
 /**
  * @author tcn 空幕  email:1623092203@qq.com time:2016年5月19日下午5:02:51

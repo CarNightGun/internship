@@ -1,4 +1,4 @@
-package com.km.common.bean;
+package com.km.web.auth;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

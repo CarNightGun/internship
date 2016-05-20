@@ -1,4 +1,4 @@
-package com.km.common.bean;
+package com.km.web.auth;
 
 /**
  * 验证用户的前端封装数据体

@@ -1,4 +1,4 @@
-package com.km.common.bean;
+package com.km.web.auth;
 
 import java.util.List;
 

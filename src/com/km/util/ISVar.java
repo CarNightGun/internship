@@ -1,6 +1,10 @@
 package com.km.util;
 
-import javax.persistence.MappedSuperclass;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.km.common.bean.AbstractTreeEntity;
+import com.km.web.model.TreeModel;
 
 public class ISVar
 {
@@ -29,8 +33,6 @@ public class ISVar
 	 * 默认头像
 	 */
 	public static final String URL_DEFAULT_HEAD = "/internship/WebContent/hsrc/image/defaultHead.jpg";
-	
-	
-	
 
+	
 }

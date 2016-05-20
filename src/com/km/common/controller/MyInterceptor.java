@@ -11,11 +11,11 @@ import org.apache.log4j.Logger;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.km.common.bean.AuthRight;
-import com.km.common.bean.PermissionMenu;
-import com.km.common.bean.UserAuth;
 import com.km.util.KmException;
 import com.km.util.auth.AuthUtil;
+import com.km.web.auth.AuthRight;
+import com.km.web.auth.PermissionMenu;
+import com.km.web.auth.UserAuth;
 
 /**
  * 拦截器

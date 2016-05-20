@@ -2,8 +2,8 @@ package com.km.util.auth;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.km.common.bean.PermissionMenu;
-import com.km.common.bean.UserAuth;
+import com.km.web.auth.PermissionMenu;
+import com.km.web.auth.UserAuth;
 
 
 

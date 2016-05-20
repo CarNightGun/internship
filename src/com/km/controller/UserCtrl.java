@@ -3,7 +3,6 @@ package com.km.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -18,23 +17,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.km.bean.Authority;
 import com.km.bean.User;
-import com.km.common.bean.AuthorityMenu;
-import com.km.common.bean.PermissionMenu;
-import com.km.common.bean.UserAuth;
-import com.km.common.bean.UserLoginModel;
-import com.km.common.bean.UserRole;
-import com.km.service.IUserService;
+import com.km.common.controller.BaseController;
 import com.km.util.auth.AuthUtil;
+import com.km.web.auth.AuthorityMenu;
+import com.km.web.auth.PermissionMenu;
+import com.km.web.auth.UserAuth;
+import com.km.web.auth.UserRole;
+import com.km.web.model.UserLoginModel;
 
 /**
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月11日下午10:43:52
  */
 @Controller
 @RequestMapping("/user")
-public class UserCtrl
+public class UserCtrl extends BaseController
 {
-	@Resource(name = "userServiceImpl")
-	private IUserService userService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model)
