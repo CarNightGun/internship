@@ -74,6 +74,14 @@ public  class  PageList<EntityType> implements IPageList<EntityType>
 	{
 		return this.items;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "PageList [pageSize=" + pageSize + ", pageCount=" + pageCount + ", currentPageNo="
+				+ currentPageNo + ", itemsCount=" + itemsCount + ", isHasPre=" + isHasPre
+				+ ", isHasNext=" + isHasNext + ", items=" + items + "]";
+	}
 	
 
 	

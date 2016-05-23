@@ -63,7 +63,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Long, Role, IRoleDao> imple
 		countCriteria.setProjection(Projections.rowCount());
 		Integer count = Integer.parseInt(countCriteria.uniqueResult().toString());
 
-		return (IPageList<Role>) PageUtil.getPageList(pageSize, pageNo, count, items);
+		return PageUtil.getPageList(pageSize, pageNo, count, items);
 	}
 
 	@Override

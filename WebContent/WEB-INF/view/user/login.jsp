@@ -61,15 +61,15 @@
 
 	<div class="container-fluid">
 		<div class="row-fluid">
-		
+		<form:form modelAttribute="contentModel" method="post">
 			<div class="dialog span4">
 				<div class="block">
 					<div class="block-heading">用户登录</div>
 					<div class="block-body">
-							<form:errors path="longinerror" class="field-has-error"></form:errors>  
+							<label class="text-error text-center"><form:errors path="errorLoginInfo" class="field-has-error"></form:errors></label>  
 							<label>用户名</label> 
-							<form:input type="text" path="username" name="username" class="span12" autocomplete="on" placeholder="用户名" /> 
-							<label>密码</label> <form:input type="password" path="password" name="password" class="span12" autocomplete="off" placeholder="密码"/> 
+							<form:input path="username" name="username" class="span12" autocomplete="on" placeholder="用户名" /> 
+							<label>密码</label> <form:password path="password" name="password" class="span12" autocomplete="off" placeholder="密码"/> 
 							<input type="submit"class="btn btn-primary pull-right" value="登录" /> 
 							<label class="remember-me"><input type="checkbox" name="remember" value="1">记住我</label>
 							<div class="clearfix"></div>
@@ -83,14 +83,14 @@
 					</p>
 
 					<p class="span4 gt-center">
-						<a class="text-error"><form:errors path="longinerror" class="field-has-error"></form:errors></a>
+						<%-- <a class="text-error"><form:errors path="errorLoginInfo" class="field-has-error"></form:errors></a> --%>
 					</p>
 					<p class="span4 gt-right">
-						<a href="<c:url value='/user/register'/> " id="register-btn" target="blank">注册</a>
+						<%-- <a href="<c:url value='/user/register'/> " id="register-btn" target="blank">注册</a> --%>
 					</p>
 				</div>
 			</div>
-		
+		</form:form>
 		
 		</div>
 	</div>

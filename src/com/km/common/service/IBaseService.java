@@ -135,6 +135,16 @@ public interface IBaseService<PKUID extends Number, EntityType extends AbstractB
     */
     public IPageList<EntityType>  listPage(int pageNo, int pageSize);
     
+//    /**
+//     * 分页查询对象
+//     * @author tcn 空幕  2016年5月20日下午11:38:47
+//     * @param entity   实体条件
+//     * @param pageNo 起始页
+//     * @param pageSize 页面大小
+//     * @return
+//     */
+//	public IPageList<EntityType> listPage(EntityType entity, int pageNo, int pageSize);
+    
 	
 	/**
 	 * 查找已审核数据

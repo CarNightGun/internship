@@ -10,6 +10,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 /**
  * 树形结果的实体
  * 
@@ -36,7 +39,7 @@ public abstract class AbstractTreeEntity<PKUID extends Number, EntityType extend
 	 * 父结点
 	 */
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "parent_pkuid")
 	private EntityType parent;
 
@@ -44,7 +47,8 @@ public abstract class AbstractTreeEntity<PKUID extends Number, EntityType extend
 	 * 子节点
 	 */
 	@Column
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "parent")
+//	@Fetch(value = FetchMode.SUBSELECT)
 	private List<EntityType> children;
 
 	public String getLevelCode()

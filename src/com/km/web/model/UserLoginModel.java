@@ -1,25 +1,26 @@
 package com.km.web.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * @author tcn 空幕  email:1623092203@qq.com time:2016年5月19日下午6:09:55
  */
 public class UserLoginModel
 {
-	@NotEmpty(message="{username.not.empty}")
-	private String userName;
-	@NotEmpty(message="{password.not.empty}")
+//	@NotEmpty(message="{username.not.empty}")
+	private String username;
+//	@NotEmpty(message="{password.not.empty}")
 	private String password;
 
-	public String getUserName()
+	private String errorLoginInfo;
+
+	public String getUsername()
 	{
-		return userName;
+		return username;
 	}
 
-	public void setUserName(String userName)
+	public void setUsername(String username)
 	{
-		this.userName = userName;
+		this.username = username;
 	}
 
 	public String getPassword()
@@ -30,6 +31,16 @@ public class UserLoginModel
 	public void setPassword(String password)
 	{
 		this.password = password;
+	}
+
+	public String getErrorLoginInfo()
+	{
+		return errorLoginInfo;
+	}
+
+	public void setErrorLoginInfo(String errorLoginInfo)
+	{
+		this.errorLoginInfo = errorLoginInfo;
 	}
 	
 	

@@ -31,13 +31,14 @@ public class MyInterceptor extends HandlerInterceptorAdapter
 	{
 	
 		log.debug("uri:"+request.getRequestURI()+"\ncurl:"+request.getContextPath()+"\nsurl:"+request.getServletPath());
+		System.out.println("uri:"+request.getRequestURI()+"\ncurl:"+request.getContextPath()+"\nsurl:"+request.getServletPath());
 
 		if (handler.getClass().isAssignableFrom(HandlerMethod.class))
 		{
 			AuthRight authRight = ((HandlerMethod) handler).getMethodAnnotation(AuthRight.class);
 
 			// 没有说权限验证的就放行
-			if (authRight == null || authRight.validate() == true)
+			if (authRight == null || authRight.validate() == false)
 			{
 				return true;
 			} else

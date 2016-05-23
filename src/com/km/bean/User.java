@@ -61,61 +61,25 @@ public class User extends AbstractBaseEntity<Long>
 	@Column
 	private String email;
 
-	// 银行账户
-	@Column
-	private String bankAccount;
+	public Role getRole()
+	{
+		return role;
+	}
 
-	// 身份证号
-	@Column
-	private String IDCardNumber;
+	public void setRole(Role role)
+	{
+		this.role = role;
+	}
 
-	// 银行名称
-	@Column
-	private String bankName;
+	public Organization getOrganization()
+	{
+		return organization;
+	}
 
-	// 单位
-	@Column
-	private String units;
-
-	// 二级单位
-	@Column
-	private String secondUnits;
-
-	// 住址
-	@Column
-	private String address;
-
-	// 学号
-	@Column
-	private String studentID;
-
-	// 行政班级ID
-	@Column
-	private String classID;
-
-	// 专业编号
-	@Column
-	private String majorID;
-
-	// 专业名称
-	@Column
-	private String majorName;
-
-	// 年级
-	@Column
-	private String grade;
-
-	// 学制
-	@Column
-	private int lengthSchooling;
-
-	// 工号
-	@Column
-	private String jobNumber;
-
-	// 职称
-	@Column
-	private String professionalTitle;
+	public void setOrganization(Organization organization)
+	{
+		this.organization = organization;
+	}
 
 	public String getAccountName()
 	{
@@ -197,164 +161,5 @@ public class User extends AbstractBaseEntity<Long>
 		this.email = email;
 	}
 
-	public String getBankAccount()
-	{
-		return bankAccount;
-	}
-
-	public void setBankAccount(String bankAccount)
-	{
-		this.bankAccount = bankAccount;
-	}
-
-	public String getIDCardNumber()
-	{
-		return IDCardNumber;
-	}
-
-	public void setIDCardNumber(String iDCardNumber)
-	{
-		IDCardNumber = iDCardNumber;
-	}
-
-	public String getBankName()
-	{
-		return bankName;
-	}
-
-	public void setBankName(String bankName)
-	{
-		this.bankName = bankName;
-	}
-
-	public String getUnits()
-	{
-		return units;
-	}
-
-	public void setUnits(String units)
-	{
-		this.units = units;
-	}
-
-	public String getSecondUnits()
-	{
-		return secondUnits;
-	}
-
-	public void setSecondUnits(String secondUnits)
-	{
-		this.secondUnits = secondUnits;
-	}
-
-	public String getAddress()
-	{
-		return address;
-	}
-
-	public void setAddress(String address)
-	{
-		this.address = address;
-	}
-
-	public String getStudentID()
-	{
-		return studentID;
-	}
-
-	public void setStudentID(String studentID)
-	{
-		this.studentID = studentID;
-	}
-
-	public String getClassID()
-	{
-		return classID;
-	}
-
-	public void setClassID(String classID)
-	{
-		this.classID = classID;
-	}
-
-	public String getMajorID()
-	{
-		return majorID;
-	}
-
-	public void setMajorID(String majorID)
-	{
-		this.majorID = majorID;
-	}
-
-	public String getMajorName()
-	{
-		return majorName;
-	}
-
-	public void setMajorName(String majorName)
-	{
-		this.majorName = majorName;
-	}
-
-	public String getGrade()
-	{
-		return grade;
-	}
-
-	public void setGrade(String grade)
-	{
-		this.grade = grade;
-	}
-
-	public int getLengthSchooling()
-	{
-		return lengthSchooling;
-	}
-
-	public void setLengthSchooling(int lengthSchooling)
-	{
-		this.lengthSchooling = lengthSchooling;
-	}
-
-	public String getJobNumber()
-	{
-		return jobNumber;
-	}
-
-	public void setJobNumber(String jobNumber)
-	{
-		this.jobNumber = jobNumber;
-	}
-
-	public String getProfessionalTitle()
-	{
-		return professionalTitle;
-	}
-
-	public void setProfessionalTitle(String professionalTitle)
-	{
-		this.professionalTitle = professionalTitle;
-	}
-
-	public Role getRole()
-	{
-		return role;
-	}
-
-	public void setRole(Role role)
-	{
-		this.role = role;
-	}
-
-	public Organization getOrganization()
-	{
-		return organization;
-	}
-
-	public void setOrganization(Organization organization)
-	{
-		this.organization = organization;
-	}
-
+	
 }

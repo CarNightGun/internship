@@ -12,11 +12,11 @@
 			<div class="clearfix"></div> <!-- 侧边栏显示开关按钮结束 -->
 		</li>
 
-			<c:forEach items="${sessionScope.accountAuth.accountRole.authorityMenus}" var="item" varStatus="status">
+			<c:forEach items="${sessionScope.userAuth.userRole.authorityMenus}" var="item" varStatus="status">
 				<c:choose>
 					<c:when test="${status.first}">
 						<c:choose>
-							<c:when test="${item.id eq requestScope.permissionMenu.rootId}">
+							<c:when test="${item.pkuid eq requestScope.permissionMenu.rootPkuid}">
 								<li class="start active">
 							</c:when>
 							<c:otherwise>
@@ -26,7 +26,7 @@
 					</c:when>
 					<c:otherwise>
 						<c:choose>
-							<c:when test="${item.id eq requestScope.permissionMenu.rootId}">
+							<c:when test="${item.pkuid eq requestScope.permissionMenu.rootPkuid}">
 								<li class="active">
 							</c:when>
 							<c:otherwise>
@@ -47,7 +47,7 @@
 					</c:if>
 	
 					<c:choose>
-						<c:when test="${subItem.id eq requestScope.permissionMenu.subId}">
+						<c:when test="${subItem.pkuid eq requestScope.permissionMenu.subPkuid}">
 							<li class="active">
 						</c:when>
 						<c:otherwise>

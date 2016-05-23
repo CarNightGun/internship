@@ -37,10 +37,9 @@
 
 	<!-- 配置拦截器 -->
 		<mvc:interceptors>
-			<mvc:interceptor>
-				<mvc:mapping path="*" />
+			
 				<bean class="com.km.common.controller.MyInterceptor"></bean>
-			</mvc:interceptor>
+			
 		</mvc:interceptors>
 
 	<!-- 没有url路径时候默认配置 为主页 -->

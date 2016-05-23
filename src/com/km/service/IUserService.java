@@ -3,6 +3,7 @@ package com.km.service;
 import com.km.bean.User;
 import com.km.common.service.IBaseService;
 import com.km.dao.IUserDao;
+import com.km.util.page.IPageList;
 
 
 
@@ -13,6 +14,8 @@ public interface IUserService extends IBaseService<Long, User , IUserDao>
 {
 
 	public User login(String username, String password);
+
+	public IPageList<User> listPage(User entity, int pageNo, int pageSize);
 
 	
 }
