@@ -68,8 +68,8 @@
 					<div class="block-body">
 							<label class="text-error text-center"><form:errors path="errorLoginInfo" class="field-has-error"></form:errors></label>  
 							<label>用户名</label> 
-							<form:input path="username" name="username" class="span12" autocomplete="on" placeholder="用户名" /> 
-							<label>密码</label> <form:password path="password" name="password" class="span12" autocomplete="off" placeholder="密码"/> 
+							<form:input path="username" name="username" value='km' class="span12" autocomplete="off" placeholder="用户名" /> 
+							<label>密码</label> <form:password path="password" value='123' name="password" class="span12" autocomplete="off" placeholder="密码"/> 
 							<input type="submit"class="btn btn-primary pull-right" value="登录" /> 
 							<label class="remember-me"><input type="checkbox" name="remember" value="1">记住我</label>
 							<div class="clearfix"></div>

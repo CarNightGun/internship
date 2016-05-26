@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class TreeModel
 {
-	private String pkuid;
+	private String id;
 	private String value;
 	private String text;
 	private boolean checked;
@@ -20,10 +20,10 @@ public class TreeModel
 
 	}
 
-	public TreeModel(String pkuid, String value, String text, boolean checked, boolean selected,
+	public TreeModel(String id, String value, String text, boolean checked, boolean selected,
 			boolean collpase, List<TreeModel> children)
 	{
-		this.pkuid = pkuid;
+		this.id = id;
 		this.value = value;
 		this.text = text;
 		this.checked = checked;
@@ -32,14 +32,14 @@ public class TreeModel
 		this.children = children;
 	}
 
-	public String getPkuid()
+	public String getId()
 	{
-		return pkuid;
+		return id;
 	}
 
-	public void setPkuid(String pkuid)
+	public void setId(String id)
 	{
-		this.pkuid = pkuid;
+		this.id = id;
 	}
 
 	public String getValue()
@@ -105,7 +105,7 @@ public class TreeModel
 	@Override
 	public String toString()
 	{
-		return "TreeModel [pkuid=" + pkuid + ", value=" + value + ", text=" + text + ", checked="
+		return "TreeModel [id=" + id + ", value=" + value + ", text=" + text + ", checked="
 				+ checked + ", selected=" + selected + ", collpase=" + collpase + ", children="
 				+ children + "]";
 	}

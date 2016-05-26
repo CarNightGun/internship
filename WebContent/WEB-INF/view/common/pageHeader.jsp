@@ -34,7 +34,7 @@
 					</li>
 					<li class="divider"></li>
 
-					<li><a href="login.html"><i class="icon-off"></i>注销登录</a></li>
+					<li><a href="<c:url value = '/user/loginout'/>"><i class="icon-off"></i>注销登录</a></li>
 				</ul></li>
 			<!-- 结束用户登录下拉 -->
 

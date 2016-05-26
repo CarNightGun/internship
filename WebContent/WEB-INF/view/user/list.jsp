@@ -159,7 +159,7 @@
 	                     </div>
 	                     <c:import url = "../common/paging.jsp">
 	        				<c:param name="pageModelName" value="contentModel"/>
-	        				<c:param name="urlAddress" value="/account/list"/>
+	        				<c:param name="urlAddress" value="/user/list"/>
 	       				 </c:import>
        				 </div>
                   </div>
@@ -194,15 +194,15 @@
        
        $(".table-toolbar").toolbarLite({
            items: [
-               { link: true, display: "启用", css: "icon-ok", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/enable/{0}", requestUrl, requestUrl, pageContext)%>",
-              	 selector: "#data-table .checkboxes", mustSelect: "请先选择数据！", singleSelect: "该操作只支持单选！"},
-               { splitter: true }, 
-               { link: true, display: "禁用", css: "icon-remove", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/disable/{0}", requestUrl, requestUrl, pageContext)%>", 
+               { link: true, display: "改变状态", css: "icon-edit", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/changeaudit/{0}", requestUrl, requestQuery, pageContext)%>",
+              	 selector: "#data-table .checkboxes", mustSelect: "请先选择数据！"},
+              
+              <%--  { link: true, display: "禁用", css: "icon-remove", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/unaudit/{0}", requestUrl, requestQuery, pageContext)%>", 
                	 selector: "#data-table .checkboxes", mustSelect: "请先选择数据！", singleSelect: "该操作只支持单选！"},
-               { splitter: true }, 
-               { link: true, display: "账户权限设置", css: "icon-user", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/authorize/{0}", requestUrl, requestUrl, pageContext)%>", 
+               { splitter: true },  --%>
+               { link: true, display: "账户权限设置", css: "icon-user", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/authorize/{0}", requestUrl, requestQuery, pageContext)%>", 
                  	 selector: "#data-table .checkboxes", mustSelect: "请先选择数据！", singleSelect: "该操作只支持单选！"},
-               { link: true, display: "删除", css: "icon-trash", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/delete/{0}", requestUrl, requestUrl, pageContext)%>", 
+               { link: true, display: "删除", css: "icon-trash", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/delete/{0}", requestUrl, requestQuery, pageContext)%>", 
                  	 selector: "#data-table .checkboxes", mustSelect: "请先选择数据！", confirm: "确认删除所选数据吗？"}
            ]
        });

@@ -66,7 +66,7 @@
 						<span>${requestScope.permissionMenu.subName}</span>
 					</li>
                </ul>
-               <!-- 结束页面的标题和面包屑-->
+               <!-- 结束页面的标题和面包屑--> 
                
             </div>
          </div>
@@ -110,6 +110,7 @@
 		Object requestUrl = request.getAttribute("requestUrl");
 		Object requestQuery = request.getAttribute("requestQuery");
 	%>
+
    <script type="text/javascript">
    $(function() {
 	   App.init();

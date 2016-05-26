@@ -30,7 +30,7 @@ public abstract class AbstractBaseEntity<PKUID extends Number>
 	/**
 	 * 标记实体是否审核 0false否 1true是
 	 */
-	@Column(name="audit")
+	@Column(name="audit",nullable = false)
 	private boolean aduit = false;
 
 	/**

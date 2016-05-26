@@ -46,7 +46,7 @@ public class User extends AbstractBaseEntity<Long>
 	private String photourl;
 
 	// 性别
-	@Column
+	@Column(nullable = false)
 	private int sex = ISVar.SEX_UNKNOWN;
 
 	// 真实姓名

@@ -3,6 +3,7 @@ package com.km.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -13,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -155,6 +157,39 @@ public class UserCtrl extends BaseController
 
         return "user/list";
     }
+	
+	@AuthRight
+	@RequestMapping(value="/changeaudit/{id}",method = RequestMethod.GET)
+	public String changeAuditState(HttpServletRequest request,@PathVariable(value="id") String pkuid){
+
+		userService.changeAuditState(pkuid);
+		String returnUrl = ServletRequestUtils.getStringParameter(request, "returnUrl", null);
+		if (returnUrl == null){
+			returnUrl = "/home/index";
+		}
+		return "redirect:"+returnUrl;
+	}
+	
+	@RequestMapping(value="/delete/{id}")
+	public String deleteUser(HttpServletRequest request,@PathVariable(value="id")String userids){
+		
+		userService.delete(userids);
+		
+		 String returnUrl = ServletRequestUtils.getStringParameter(request, "returnUrl", null);
+		if (returnUrl == null){
+			returnUrl = "/home/index";
+		}
+		return "redirect:"+returnUrl;
+	}
+	
+	
+	@RequestMapping(value="/loginout",method=RequestMethod.GET)
+	public String loginout(HttpServletRequest request){
+		AuthUtil.setSessionUserAuth(request, null);
+		return "redirect:/user/login";
+	}
+	
+	
 	
 	
 }

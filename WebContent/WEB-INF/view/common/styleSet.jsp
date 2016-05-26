@@ -13,7 +13,7 @@
             <li class="color-light tooltips" data-style="light" data-original-title="Light"></li>
          </ul>
       </div>
-      <div class="theme-option">
+      <!-- <div class="theme-option">
          <span>布局</span>
          <select class="layout-option form-control input-small">
             <option value="fluid" selected="selected">扩展</option>
@@ -41,6 +41,6 @@
             <option value="default" selected="selected">跟随</option>
          </select>
       </div>
-   </div>
+    --></div>
 </div>
 <!-- 结束风格定制 -->

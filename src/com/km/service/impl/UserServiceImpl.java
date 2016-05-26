@@ -1,8 +1,11 @@
 package com.km.service.impl;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +48,9 @@ public class UserServiceImpl extends BaseServiceImpl<Long, User, IUserDao> imple
 		{
 			user = users.get(0);
 		}
+
+		// 懒加载 提前实例化 Failed to lazily initialize a collection
+		Hibernate.initialize(user.getRole().getAuthorities());
 		return user;
 	}
 
@@ -52,32 +58,79 @@ public class UserServiceImpl extends BaseServiceImpl<Long, User, IUserDao> imple
 	@Override
 	public IPageList<User> listPage(User entity, int pageNo, int pageSize)
 	{
-//		 Criteria countCriteria = baseDao.getCriteria();
+		Criteria countCriteria = baseDao.getCriteria();
 		Criteria listCriteria = baseDao.getCriteria();
-//		String name = entity.getName();
-//		String accountName = entity.getAccountName();
+		String name = entity.getName();
+		String accountName = entity.getAccountName();
 
-		
-		
-		
-		
-//		if (name != null && !name.isEmpty())
-//		{
-////			 countCriteria.add(Restrictions.eq("name", name));
-//			listCriteria.add(Restrictions.eq("name", name));
-//		}
-//		if (accountName != null && !accountName.isEmpty())
-//		{
-////			 countCriteria.add(Restrictions.eq("accountName", accountName));
-//			listCriteria.add(Restrictions.eq("accountName", accountName));
-//		}
+		if (name != null && !name.isEmpty())
+		{
+			countCriteria.add(Restrictions.eq("name", name));
+			listCriteria.add(Restrictions.eq("name", name));
+		}
+		if (accountName != null && !accountName.isEmpty())
+		{
+			countCriteria.add(Restrictions.eq("accountName", accountName));
+			listCriteria.add(Restrictions.eq("accountName", accountName));
+		}
 
 		listCriteria.setFirstResult((pageNo - 1) * pageSize);
 		listCriteria.setMaxResults(pageSize);
 		List<User> items = listCriteria.list();
-//		 countCriteria.setProjection(Projections.rowCount());
-		listCriteria.setProjection(Projections.rowCount());
-		Integer itemsCount = Integer.parseInt(listCriteria.uniqueResult().toString());
+		countCriteria.setProjection(Projections.rowCount());
+
+		Integer itemsCount = Integer.parseInt(countCriteria.uniqueResult().toString());
 		return PageUtil.getPageList(pageSize, pageNo, itemsCount, items);
+	}
+
+	@Override
+	public void changeAuditState(String pkuids)
+	{
+		if (pkuids == null || pkuids.isEmpty())
+		{
+			return;
+		}
+
+		Pattern p = Pattern.compile("^([0-9]+,?)*[0-9]+");
+		Matcher m = p.matcher(pkuids);
+		if (!m.find())
+		{
+			return;
+		}
+
+		String[] pkuidArr = pkuids.split(",");
+		for (String pkuid : pkuidArr)
+		{
+			User u = baseDao.get(Long.parseLong(pkuid));
+			if (u.isAduit())
+			{
+				baseDao.unAudit(u);
+			} else
+			{
+				baseDao.aduit(u);
+			}
+		}
+
+	}
+
+	@Override
+	public void delete(String userids)
+	{
+		if (userids == null || userids.isEmpty())
+		{
+			return;
+		}
+
+		Pattern p = Pattern.compile("^([0-9]+,?)*[0-9]+");
+		Matcher m = p.matcher(userids);
+		if (!m.find())
+		{
+			return;
+		}
+		String[] pkuidArr = userids.split(",");
+		for (String pkuid : pkuidArr)
+		{
+			baseDao.deleteById(Long.parseLong(pkuid));
+		}
 	}
 }

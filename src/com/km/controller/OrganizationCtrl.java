@@ -55,11 +55,11 @@ public class OrganizationCtrl extends BaseController
 		
 		model.addAttribute(requestUrl, request.getServletPath());
 		model.addAttribute(requestQuery, request.getQueryString());
-		
-		return "/organization/chain";
+				
+		return "orgnaization/chain";
 	}
 	
-	@AuthRight
+//	@AuthRight
 	@RequestMapping(value="/delete" , method = RequestMethod.GET)
 	public String delete(HttpServletRequest request, Model model, @PathVariable(value="id") Long id){
 		boolean del = organizationService.deleteById(id);
@@ -68,11 +68,11 @@ public class OrganizationCtrl extends BaseController
 		}
 		String returnUrl = ServletRequestUtils.getStringParameter(request, "returnUrl", null);
 		if(returnUrl==null)
-        	returnUrl="authority/chain";
+        	returnUrl="/authority/chain";
         return "redirect:"+returnUrl;
 	}
 	
-	@AuthRight
+//	@AuthRight
 	@RequestMapping(value = "/add/{id}", method = {RequestMethod.GET})
 	public String add(HttpServletRequest request, Model model, @PathVariable(value="id") Long id){	
 		if(!model.containsAttribute(contentModel)){
@@ -98,7 +98,7 @@ public class OrganizationCtrl extends BaseController
 	}
 	
 	
-	@AuthRight
+//	@AuthRight
 	@RequestMapping(value = "/add/{id}", method = {RequestMethod.POST})
     public String add(HttpServletRequest request, Model model, @Valid @ModelAttribute(contentModel) OrganizationEditModel editModel, @PathVariable(value="id") Long id, BindingResult result) {
         if(result.hasErrors()){
@@ -109,7 +109,7 @@ public class OrganizationCtrl extends BaseController
         Organization organization=OrganizationModelExtra.toOrganization(editModel);
         organizationService.save(organization);
         if(returnUrl==null)
-        	returnUrl="organization/chain";
+        	returnUrl="/organization/chain";
     	return "redirect:"+returnUrl;     	
     }
 	
@@ -137,7 +137,7 @@ public class OrganizationCtrl extends BaseController
         return "organization/edit";	
 	}
 	
-	@AuthRight
+//	@AuthRight
 	@RequestMapping(value = "/edit/{id}", method = {RequestMethod.POST})
     public String edit(HttpServletRequest request, Model model, @Valid @ModelAttribute(contentModel) OrganizationEditModel editModel, @PathVariable(value="id") Long id, BindingResult result){
         if(result.hasErrors())
@@ -149,7 +149,7 @@ public class OrganizationCtrl extends BaseController
         organization.setPkuid(id);
         organizationService.update(organization);
         if(returnUrl==null)
-        	returnUrl="organization/chain";
+        	returnUrl="/organization/chain";
     	return "redirect:"+returnUrl;      	
     }
 	

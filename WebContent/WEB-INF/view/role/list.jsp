@@ -110,7 +110,7 @@
 	                     </div>
 	                     <c:import url = "../common/paging.jsp">
 	        				<c:param name="pageModelName" value="contentModel"/>
-	        				<c:param name="urlAddress" value="/account/list"/>
+	        				<c:param name="urlAddress" value="/user/list"/>
 	       				 </c:import>
        				 </div>
                   </div>

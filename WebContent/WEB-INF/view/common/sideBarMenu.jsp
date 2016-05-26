@@ -64,7 +64,7 @@
 			</c:forEach>
 
 			<li class="last">
-				<a href="login.html"> 
+				<a href="<c:url value = '/user/loginout'/>"> 
 					<i class="icon-off"></i>
 					<span class="title">注销登录</span>
 				</a>

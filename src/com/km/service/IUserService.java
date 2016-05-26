@@ -16,6 +16,8 @@ public interface IUserService extends IBaseService<Long, User , IUserDao>
 	public User login(String username, String password);
 
 	public IPageList<User> listPage(User entity, int pageNo, int pageSize);
-
 	
+	public void changeAuditState(String pkuids);
+	
+	public void delete(String userids);	
 }
