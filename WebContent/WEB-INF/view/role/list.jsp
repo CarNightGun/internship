@@ -42,7 +42,7 @@
       <div class="page-content">
          
          <!-- 风格设定 -->
-         <%@ include file="../common/styleSet.jsp"%>
+         <%-- <%@ include file="../common/styleSet.jsp"%> --%>
            
          <!-- 开始页面标题-->
          <div class="row">
@@ -156,9 +156,9 @@
                { link: true, display: "禁用", css: "icon-remove", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/disable/{0}", requestUrl, requestQuery, pageContext)%>", 
                	 selector: "#data-table .checkboxes", mustSelect: "请先选择数据！", singleSelect: "该操作只支持单选！"},
                { splitter: true }, 
-               { link: true, display: "账户权限设置", css: "icon-user", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/authorize/{0}", requestUrl, requestQuery, pageContext)%>", 
+               { link: true, display: "账户权限设置", css: "icon-user", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/role/bind/{0}", requestUrl, requestQuery, pageContext)%>", 
                  	 selector: "#data-table .checkboxes", mustSelect: "请先选择数据！", singleSelect: "该操作只支持单选！"},
-               { link: true, display: "删除", css: "icon-trash", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/delete/{0}", requestUrl, requestQuery, pageContext)%>", 
+               { link: true, display: "删除", css: "icon-trash", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/role/delete/{0}", requestUrl, requestQuery, pageContext)%>", 
                  	 selector: "#data-table .checkboxes", mustSelect: "请先选择数据！", confirm: "确认删除所选数据吗？"}
            ]
        });

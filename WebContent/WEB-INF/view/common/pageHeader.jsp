@@ -25,14 +25,14 @@
 				data-toggle="dropdown" data-hover="dropdown"
 				data-close-others="true"> <img alt=""
 					src="<c:url value='/images/defaultHead1.jpg'/>"  />&nbsp; <span
-					class="username">${sessionScope.accountAuth.name}</span>&nbsp;-&nbsp;
-					<span class="username">${sessionScope.accountAuth.accountRole.name}</span>
+					class="username">${sessionScope.userAuth.username}</span>&nbsp;-&nbsp;
+					<span class="username">${sessionScope.userAuth.userRole.name}</span>
 					<i class="icon-angle-down"></i>
 			</a>
 				<ul class="dropdown-menu">
-					<li><a href="extra_profile.html"><i class="icon-user"></i>我的账户</a>
-					</li>
-					<li class="divider"></li>
+					<!-- <li><a href="extra_profile.html"><i class="icon-user"></i>我的账户</a>
+					</li> -->
+					<!-- <li class="divider"></li> -->
 
 					<li><a href="<c:url value = '/user/loginout'/>"><i class="icon-off"></i>注销登录</a></li>
 				</ul></li>

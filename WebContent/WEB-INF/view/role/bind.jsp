@@ -17,9 +17,10 @@
    <!-- 引入样式文件 -->
    <%@ include file="../common/importCss.jsp"%>
    
+    <!-- 引入js文件 -->
+   <%@ include file="../common/importJs.jsp"%>
    
-   
-   <link rel="shortcut icon" href="favicon.ico" />
+   <!-- <link rel="shortcut icon" href="favicon.ico" /> -->
 </head>
 <!-- 结束头部 -->
 
@@ -41,7 +42,7 @@
       <div class="page-content">
          
          <!-- 风格设定 -->
-         <%@ include file="../common/styleSet.jsp"%>
+         <%-- <%@ include file="../common/styleSet.jsp"%> --%>
            
          <!-- 开始页面标题-->
          <div class="row">
@@ -100,7 +101,7 @@
 					                  <div class="portlet-body">
 					                  	   <c:import url = "../common/treeSelector.jsp">
 											 <c:param name="propertyName" value="authorityIds"/>
-											 <c:param name="propertyValue" value="${contentModel.getAuthorityIdsString()}"/>
+											 <c:param name="propertyValue" value="${contentModel.getAuthorityIds()}"/>
 											 <c:param name="checkbox" value="true"/>
 											 <c:param name="treeDataSourceName" value="treeDataSource"/>
 										   </c:import>
@@ -130,9 +131,7 @@
    
    <!-- 页脚 -->
    <%@ include file="../common/pageFooter.jsp"%>
-   
-   <!-- 引入js文件 -->
-   <%@ include file="../common/importJs.jsp"%>
+  
    
    
    <script type="text/javascript">

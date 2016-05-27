@@ -64,6 +64,7 @@ public class ArraysUtil
 			return (Object[]) array;
 		} catch (Exception e)
 		{
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -103,7 +104,6 @@ public class ArraysUtil
 		{
 			return null;
 		}
-
 		try
 		{
 			Object array = null;
@@ -114,7 +114,7 @@ public class ArraysUtil
 				Object value = method.invoke(lt);
 				if (array == null)
 				{
-					Class<?> classType = list.getClass();
+					Class<?> classType = ArrayList.class;//默认创建数组
 					array = classType.newInstance();
 					add = array.getClass().getMethod("add", Object.class);
 				}
@@ -123,6 +123,7 @@ public class ArraysUtil
 			return (List<?>) array;
 		} catch (Exception e)
 		{
+			e.printStackTrace();
 			return null;
 		}
 	}

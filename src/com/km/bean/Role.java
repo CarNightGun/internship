@@ -10,6 +10,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.km.common.bean.AbstractBaseEntity;
 
 /**
@@ -22,7 +25,8 @@ import com.km.common.bean.AbstractBaseEntity;
 @Table
 public class Role extends AbstractBaseEntity<Long>
 {
-	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name = "role_authority", joinColumns =
 	{ @JoinColumn(name = "role_pkuid", referencedColumnName = "pkuid") }, inverseJoinColumns =
 	{ @JoinColumn(name = "authority_pkuid", referencedColumnName = "pkuid") })

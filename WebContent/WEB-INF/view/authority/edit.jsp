@@ -43,7 +43,7 @@
       <div class="page-content">
          
          <!-- 风格设定 -->
-         <%@ include file="../common/styleSet.jsp"%>
+         <%-- <%@ include file="../common/styleSet.jsp"%> --%>
            
          <!-- 开始页面标题-->
          <div class="row">

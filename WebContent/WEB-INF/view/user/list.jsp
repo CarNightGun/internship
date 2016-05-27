@@ -42,7 +42,7 @@
       <div class="page-content">
          
          <!-- 风格设定 -->
-         <%@ include file="../common/styleSet.jsp"%>
+         <%-- <%@ include file="../common/styleSet.jsp"%> --%>
            
          <!-- 开始页面标题-->
          <div class="row">
@@ -87,14 +87,14 @@
 					  <form:form modelAttribute="searchModel" class="form-horizontal" method="GET">
 						 <div class="form-body">
 							<div class="row">
-							   <div class="col-md-6">
+							   <%-- <div class="col-md-6">
 								  <div class="form-group">
 									 <label class="control-label col-md-3">姓名</label>
 									 <div class="col-md-9">
 										<form:input path="name" class="form-control placeholder-no-fix" autocomplete="off" placeholder="姓名"/>
 									 </div>
 								  </div>
-							   </div>
+							   </div> --%>
 							   <!--/span-->
 							   <div class="col-md-6">
 								  <div class="form-group">
@@ -134,10 +134,10 @@
 		                        <thead>
 		                           <tr>
 		                              <th class="table-checkbox"><input type="checkbox" class="group-checkable"/></th>
-		                              <th>姓名</th>
+		                              <th >用户名</th>
 		                              <th >邮箱</th>
 		                              <th >是否可用</th>
-		                              <th >用户名</th>
+		                              <th >真实姓名</th>
 		                              <th >注册时间</th>
 		                           </tr>
 		                        </thead>
@@ -147,10 +147,10 @@
 							        	<td class="check_cell">
 									        <input type="checkbox" class="checkboxes" name="Id" value="${ item.pkuid }" />
 									    </td>
-							            <td>${ item.name }</td>
-							            <td>${ item.email }</td>
-							            <td>${ item.audit }</td>
 							            <td>${ item.accountName }</td>
+							            <td>${ item.email }</td>
+							            <td>${ item.audit=='true' ? '是' : '否'}</td> <%--三目表达式的每个运算符和值之间都有空格--%>
+							            <td>${ item.realName }</td>
 							            <td>${ item.createTime.toLocaleString() }</td>
 							        </tr>
 							        </c:forEach>

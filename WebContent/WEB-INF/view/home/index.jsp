@@ -43,7 +43,7 @@
       <div class="page-content">
          
          <!-- 风格设定 -->
-         <%@ include file="../common/styleSet.jsp"%>
+      <%--    <%@ include file="../common/styleSet.jsp"%> --%>
            
          <!-- 开始页面标题-->
          <div class="row">
@@ -76,7 +76,7 @@
          
          <div class="clearfix"></div>
          <div class="row">      
-            
+            	<h1 class="text-center">欢迎您, ${sessionScope.userAuth.username} !</h1>
          </div>
     
       </div>
