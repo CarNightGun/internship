@@ -19,5 +19,7 @@ public interface IUserService extends IBaseService<Long, User , IUserDao>
 	
 	public void changeAuditState(String pkuids);
 	
-	public void delete(String userids);	
+	public void delete(String userids);
+
+	public void updateRoleOrg(Long id, Long roleId, Long organizationId);	
 }

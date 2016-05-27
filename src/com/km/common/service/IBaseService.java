@@ -165,7 +165,7 @@ public interface IBaseService<PKUID extends Number, EntityType extends AbstractB
      * @author tcn 空幕  2016年5月17日下午3:47:33
      * @param entity 要操作的实体
      */
-    public void aduit(EntityType entity) ;
+    public void audit(EntityType entity) ;
     
     /**
      * 取消审核数据

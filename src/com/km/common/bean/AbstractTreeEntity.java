@@ -27,29 +27,29 @@ public abstract class AbstractTreeEntity<PKUID extends Number, EntityType extend
 	 * 级次代码
 	 */
 	@Column
-	private String levelCode;
+	protected String levelCode;
 
 	/**
 	 * 所在层次排序编号
 	 */
 	@Column
-	private String sorting;
+	protected String sorting;
 
 	/**
 	 * 父结点
 	 */
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "parent_pkuid")
-	private EntityType parent;
+	protected EntityType parent;
 
 	/**
 	 * 子节点
 	 */
 	@Column
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "parent")
-//	@Fetch(value = FetchMode.SUBSELECT)
-	private List<EntityType> children;
+	@OneToMany(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER, mappedBy = "parent")
+	@Fetch(value = FetchMode.SUBSELECT)
+	protected List<EntityType> children;
 
 	public String getLevelCode()
 	{

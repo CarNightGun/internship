@@ -1,7 +1,5 @@
 package com.km.service;
 
-import java.util.List;
-
 import com.km.bean.Organization;
 import com.km.common.service.ITreeService;
 import com.km.dao.IOrganizationDao;
@@ -11,6 +9,8 @@ import com.km.dao.IOrganizationDao;
  */
 public interface IOrganizationService extends ITreeService<Long, Organization, IOrganizationDao>
 {
+	
+	public void updateOrg(Organization org);
 
 
 }

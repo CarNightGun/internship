@@ -36,17 +36,5 @@ public class Role extends AbstractBaseEntity<Long>
 	public void setAuthorities(List<Authority> authorities)
 	{
 		this.authorities = authorities;
-	}
-
-	@Override
-	public String toString()
-	{
-		return "Role [authorities=" + authorities + ", getAuthorities()=" + getAuthorities()
-				+ ", getPkuid()=" + getPkuid() + ", isAduit()=" + isAduit() + ", getName()="
-				+ getName() + ", getCreateTime()=" + getCreateTime() + ", getUpdateTime()="
-				+ getUpdateTime() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
-	}
-
-	
+	}	
 }

@@ -18,9 +18,10 @@
    <!-- 引入样式文件 -->
    <%@ include file="../common/importCss.jsp"%>
    
-   
-   
-   <link rel="shortcut icon" href="favicon.ico" />
+   <!-- 引入js文件 -->
+   <%@ include file="../common/importJs.jsp"%>
+  <!--  
+   <link rel="shortcut icon" href="favicon.ico" /> -->
 </head>
 <!-- 结束头部 -->
 
@@ -148,8 +149,7 @@
    <!-- 页脚 -->
    <%@ include file="../common/pageFooter.jsp"%>
    
-   <!-- 引入js文件 -->
-   <%@ include file="../common/importJs.jsp"%>
+   
    
    
    <script type="text/javascript">

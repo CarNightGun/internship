@@ -9,23 +9,22 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class AuthorityEditModel
 {
-	private Integer id;
-	@NotEmpty(message="{name.not.empty}")
+	private Long id;
+ 
 	private String name;
-	@NotNull(message="{position.not.null}")
-	private int position;
-	private String theValue;
-	@NotEmpty(message="{url.not.empty}")
+ 
+	private String sorting;
+ 
 	private String url;
-	@NotEmpty(message="{matchUrl.not.empty}")
+ 
 	private String matchUrl;
 	private String itemIcon;
-	private Integer parentId;
-	public Integer getId()
+	private Long parentId;
+	public Long getId()
 	{
 		return id;
 	}
-	public void setId(Integer id)
+	public void setId(Long id)
 	{
 		this.id = id;
 	}
@@ -37,21 +36,14 @@ public class AuthorityEditModel
 	{
 		this.name = name;
 	}
-	public int getPosition()
+ 
+	public String getSorting()
 	{
-		return position;
+		return sorting;
 	}
-	public void setPosition(int position)
+	public void setSorting(String sorting)
 	{
-		this.position = position;
-	}
-	public String getTheValue()
-	{
-		return theValue;
-	}
-	public void setTheValue(String theValue)
-	{
-		this.theValue = theValue;
+		this.sorting = sorting;
 	}
 	public String getUrl()
 	{
@@ -77,11 +69,11 @@ public class AuthorityEditModel
 	{
 		this.itemIcon = itemIcon;
 	}
-	public Integer getParentId()
+	public Long getParentId()
 	{
 		return parentId;
 	}
-	public void setParentId(Integer parentId)
+	public void setParentId(Long parentId)
 	{
 		this.parentId = parentId;
 	}

@@ -136,9 +136,9 @@ public abstract class BaseServiceImpl<PKUID extends Number,EntityType extends Ab
 	}
 
 	@Override
-	public void aduit(EntityType entity)
+	public void audit(EntityType entity)
 	{
-		this.baseDao.aduit(entity);
+		this.baseDao.audit(entity);
 	}
 
 	@Override

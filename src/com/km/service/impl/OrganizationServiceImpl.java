@@ -22,4 +22,14 @@ public class OrganizationServiceImpl extends TreeServiceImpl<Long, Organization,
 		super(baseDao);
 	}
 
+	@Override
+	public void updateOrg(Organization org)
+	{
+//		Organization _org = this.get(org.getPkuid());
+		
+		this.merge(org);
+		
+		
+	}
+
 }

@@ -20,7 +20,7 @@
    
    
    
-   <link rel="shortcut icon" href="favicon.ico" />
+  <!--  <link rel="shortcut icon" href="favicon.ico" /> -->
 </head>
 <!-- 结束头部 -->
 
@@ -149,7 +149,7 @@
 									    </td>
 							            <td>${ item.name }</td>
 							            <td>${ item.email }</td>
-							            <td>${ item.aduit }</td>
+							            <td>${ item.audit }</td>
 							            <td>${ item.accountName }</td>
 							            <td>${ item.createTime.toLocaleString() }</td>
 							        </tr>

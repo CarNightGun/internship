@@ -45,13 +45,12 @@ public class RoleCtrl extends BaseController
 		model.addAttribute(requestUrl, request.getServletPath());
 		model.addAttribute(requestQuery, request.getQueryString());
 
-		model.addAttribute(searchModel, roleSearh);
-		int pageNo = ServletRequestUtils.getIntParameter(request, PageUtil.NAME_PAGE_NO,
-				PageUtil.DEFAULT_PAGE_NO);
-		int pageSize = ServletRequestUtils.getIntParameter(request, PageUtil.NAME_PAGE_SIZE,
-				PageUtil.DEFAULT_PAGE_SIZE);
-		model.addAttribute(contentModel, roleService.listPage(roleSearh, pageNo, pageSize));
-		return "role/list";
+        model.addAttribute(searchModel, roleSearh);
+        int pageNo = ServletRequestUtils.getIntParameter(request, PageUtil.NAME_PAGE_NO, PageUtil.DEFAULT_PAGE_NO);
+        int pageSize = ServletRequestUtils.getIntParameter(request, PageUtil.NAME_PAGE_SIZE, PageUtil.DEFAULT_PAGE_SIZE);      
+        model.addAttribute(contentModel, roleService.listPage(roleSearh, pageNo, pageSize));
+
+        return "role/list";
 	}
 
 	@AuthRight
@@ -92,13 +91,13 @@ public class RoleCtrl extends BaseController
 	{
 		Role role = roleService.get(id);
 
-		if (!model.containsAttribute("contentModel"))
+		if (!model.containsAttribute(contentModel))
 		{
 			RoleBindModel roleBindModel = new RoleBindModel();
 			roleBindModel.setName(role.getName());
 			roleBindModel.setAuthorityIds((Long[]) ArraysUtil.listToArrayByField(
 					role.getAuthorities(), "pkuid"));
-			model.addAttribute("contentModel", roleBindModel);
+			model.addAttribute(contentModel, roleBindModel);
 		}
 
 		String expanded = ServletRequestUtils.getStringParameter(request, "expanded", null);
@@ -107,7 +106,7 @@ public class RoleCtrl extends BaseController
 		List<TreeModel> children = TreeModelExtra.ToTreeModels(authorityService.listTree(), null,
 				checkedIdList, StringUtil.toIntegerList(expanded, ","));
 		List<TreeModel> treeModels = new ArrayList<TreeModel>(Arrays.asList(new TreeModel(null,
-				null, "根节点", false, false, false, children)));
+				null, "计算机学院实习经费管理及审计系统", false, false, false, children)));
 		model.addAttribute(treeDataSource, JSONArray.fromObject(treeModels, new JsonConfig())
 				.toString());
 
@@ -118,13 +117,12 @@ public class RoleCtrl extends BaseController
 	@RequestMapping(value = "/bind/{id}", method =
 	{ RequestMethod.POST })
 	public String bind(HttpServletRequest request, Model model,
-			@Valid @ModelAttribute("contentModel") RoleBindModel roleBindModel,
+			@Valid @ModelAttribute(contentModel) RoleBindModel roleBindModel,
 			@PathVariable(value = "id") Long id, BindingResult result)
 	{
 		if (result.hasErrors()){
 			return bind(request, model, id);
 		}
-		// to do
 		roleService.saveAuthorize(id,
 				ArraysUtil.removeArrayItem(roleBindModel.getAuthorityIds(), new Long(0)));
 		String returnUrl = ServletRequestUtils.getStringParameter(request, "returnUrl", null);

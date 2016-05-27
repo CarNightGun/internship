@@ -7,8 +7,8 @@ public class UserAuthorizeModel
 {
 	private String name;
 	private String username;
-	private Integer roleId;
-	private Integer organizationId;
+	private Long roleId;
+	private Long organizationId;
 	public String getName()
 	{
 		return name;
@@ -25,19 +25,19 @@ public class UserAuthorizeModel
 	{
 		this.username = username;
 	}
-	public Integer getRoleId()
+	public Long getRoleId()
 	{
 		return roleId;
 	}
-	public void setRoleId(Integer roleId)
+	public void setRoleId(Long roleId)
 	{
 		this.roleId = roleId;
 	}
-	public Integer getOrganizationId()
+	public Long getOrganizationId()
 	{
 		return organizationId;
 	}
-	public void setOrganizationId(Integer organizationId)
+	public void setOrganizationId(Long organizationId)
 	{
 		this.organizationId = organizationId;
 	}

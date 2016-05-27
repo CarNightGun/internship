@@ -12,6 +12,9 @@ public class OrganizationEditModel
 	private String name;	
 
 	private String sorting;
+	
+	private String orgCode;
+	
 	private Long parentId;
 	public Long getId()
 	{
@@ -44,6 +47,14 @@ public class OrganizationEditModel
 	public void setParentId(Long parentId)
 	{
 		this.parentId = parentId;
+	}
+	public String getOrgCode()
+	{
+		return orgCode;
+	}
+	public void setOrgCode(String orgCode)
+	{
+		this.orgCode = orgCode;
 	}
 	
 	

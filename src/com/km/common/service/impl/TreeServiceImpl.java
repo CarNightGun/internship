@@ -33,13 +33,17 @@ public abstract class TreeServiceImpl<PKUID extends Number, EntityType extends A
 	public List<EntityType> listTree()
 	{
 		List<EntityType> list = this.baseDao.getCriteria().add(Restrictions.isNull("parent")).list();
-		for (EntityType entity : list){
-			LazyUtil.initializeEntity(entity);
-			for (EntityType entityType : entity.getChildren())
-			{
-				LazyUtil.initializeEntity(entityType.getChildren());
-			}
-		}
+//		for (EntityType entity : list){
+//			LazyUtil.initializeEntity(entity);
+//			for (EntityType entityType : entity.getChildren())
+//			{
+//				LazyUtil.initializeEntity(entityType.getChildren());
+//				for (EntityType entityType2 : entityType.getChildren())
+//				{
+//					LazyUtil.initializeEntity(entityType2.getChildren());
+//				}
+//			}
+//		}
 		return list;
 	}
 }

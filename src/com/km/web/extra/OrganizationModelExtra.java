@@ -17,6 +17,8 @@ public class OrganizationModelExtra
 		result.setName(editModel.getName());
  
 		result.setSorting(editModel.getSorting());
+		result.setOrgCode(editModel.getOrgCode());
+		result.setAudit(true);
 		
 		if(editModel.getParentId()!=null && editModel.getParentId()>0){
 			Organization parent=new Organization();
@@ -33,6 +35,7 @@ public class OrganizationModelExtra
 		result.setId(organization.getPkuid());
 		result.setName(organization.getName());
 		result.setSorting(organization.getSorting());
+		result.setOrgCode(organization.getOrgCode());
 		
 		if(organization.getParent()!=null)
 			result.setParentId(organization.getParent().getPkuid());

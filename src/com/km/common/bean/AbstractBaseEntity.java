@@ -25,19 +25,19 @@ public abstract class AbstractBaseEntity<PKUID extends Number>
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "pkuid",nullable=false)
-	private PKUID pkuid;
+	protected PKUID pkuid;
 
 	/**
 	 * 标记实体是否审核 0false否 1true是
 	 */
 	@Column(name="audit",nullable = false)
-	private boolean aduit = false;
+	protected boolean audit = false;
 
 	/**
 	 * 名称
 	 */
 	@Column(name="name")
-	private String name;
+	protected String name;
 
 	/**
 	 * 创建时间
@@ -45,7 +45,7 @@ public abstract class AbstractBaseEntity<PKUID extends Number>
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="createtime",updatable = false)
 	@org.hibernate.annotations.CreationTimestamp
-	private Date createTime;
+	protected Date createTime;
 
 	/**
 	 * 更新时间
@@ -53,7 +53,7 @@ public abstract class AbstractBaseEntity<PKUID extends Number>
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="updatetime")
 	@org.hibernate.annotations.UpdateTimestamp
-	private Date updateTime;
+	protected Date updateTime;
 
 	public PKUID getPkuid()
 	{
@@ -65,14 +65,14 @@ public abstract class AbstractBaseEntity<PKUID extends Number>
 		this.pkuid = pkuid;
 	}
 
-	public boolean isAduit()
+	public boolean isAudit()
 	{
-		return aduit;
+		return audit;
 	}
 
-	public void setAduit(boolean aduit)
+	public void setAudit(boolean audit)
 	{
-		this.aduit = aduit;
+		this.audit = audit;
 	}
 
 	public String getName()

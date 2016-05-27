@@ -20,7 +20,7 @@
    
    
    
-   <link rel="shortcut icon" href="favicon.ico" />
+   <!-- <link rel="shortcut icon" href="favicon.ico" /> -->
 </head>
 <!-- 结束头部 -->
 

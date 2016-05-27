@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.annotation.Resource;
+
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.criterion.Projections;
@@ -13,9 +15,18 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+
+
+
+import com.km.bean.Organization;
+import com.km.bean.Role;
 import com.km.bean.User;
 import com.km.common.service.impl.BaseServiceImpl;
 import com.km.dao.IUserDao;
+import com.km.service.IAuthorityService;
+import com.km.service.IOrganizationService;
+import com.km.service.IRoleService;
 import com.km.service.IUserService;
 import com.km.util.page.IPageList;
 import com.km.util.page.PageUtil;
@@ -27,6 +38,14 @@ import com.km.util.page.PageUtil;
 @Transactional
 public class UserServiceImpl extends BaseServiceImpl<Long, User, IUserDao> implements IUserService
 {
+	
+	
+	@Resource(name = "roleServiceImpl")
+	protected IRoleService roleService;
+
+	@Resource(name = "organizationServiceImpl")
+	protected IOrganizationService organizationService;
+	
 
 	@Autowired
 	public UserServiceImpl(@Qualifier("userDaoImpl") IUserDao baseDao)
@@ -102,12 +121,12 @@ public class UserServiceImpl extends BaseServiceImpl<Long, User, IUserDao> imple
 		for (String pkuid : pkuidArr)
 		{
 			User u = baseDao.get(Long.parseLong(pkuid));
-			if (u.isAduit())
+			if (u.isAudit())
 			{
 				baseDao.unAudit(u);
 			} else
 			{
-				baseDao.aduit(u);
+				baseDao.audit(u);
 			}
 		}
 
@@ -132,5 +151,25 @@ public class UserServiceImpl extends BaseServiceImpl<Long, User, IUserDao> imple
 		{
 			baseDao.deleteById(Long.parseLong(pkuid));
 		}
+	}
+
+	@Override
+	public void updateRoleOrg(Long id, Long roleId, Long organizationId)
+	{
+		User user=super.get(id);
+		if(roleId!=null && roleId>0){
+			Role dbRole=roleService.get(roleId);
+			user.setRole(dbRole);
+		}
+		else
+			user.setRole(null);
+		if(organizationId!=null && organizationId>0){
+			Organization dbOrganization=organizationService.get(organizationId);
+			user.setOrganization(dbOrganization);
+		}
+		else
+			user.setOrganization(null);
+		super.update(user);
+		
 	}
 }

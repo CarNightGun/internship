@@ -17,10 +17,11 @@
    
    <!-- 引入样式文件 -->
    <%@ include file="../common/importCss.jsp"%>
+   <!-- 引入js文件 -->
+   <%@ include file="../common/importJs.jsp"%>
    
    
-   
-   <link rel="shortcut icon" href="favicon.ico" />
+  <!--  <link rel="shortcut icon" href="favicon.ico" /> -->
 </head>
 <!-- 结束头部 -->
 
@@ -96,16 +97,16 @@
                            <div class="form-group">
                               <label  class="col-md-2 control-label">位置</label>
                               <div class="col-md-10">
-                                 <form:input path="position" class="form-control" placeholder="位置"/><br/>
-                                 <form:errors path="position" class="field-has-error"></form:errors>
+                                 <form:input path="sorting" class="form-control" placeholder="位置"/><br/>
+                                 <form:errors path="sorting" class="field-has-error"></form:errors>
                               </div>
                            </div>
-                           <div class="form-group">
+                          <%--  <div class="form-group">
                               <label  class="col-md-2 control-label">值</label>
                               <div class="col-md-10">
                                  <form:input path="theValue" class="form-control" placeholder="值"/>
                               </div>
-                           </div>
+                           </div> --%>
                            <div class="form-group">
                               <label  class="col-md-2 control-label">Url</label>
                               <div class="col-md-10">
@@ -164,8 +165,7 @@
    <!-- 页脚 -->
    <%@ include file="../common/pageFooter.jsp"%>
    
-   <!-- 引入js文件 -->
-   <%@ include file="../common/importJs.jsp"%>
+   
    
    
    <script type="text/javascript">

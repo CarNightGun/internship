@@ -355,10 +355,10 @@ public abstract class BaseDaoImpl<PKUID extends Number, EntityType extends Abstr
 	}
 
 	@Override
-	public void aduit(EntityType entity)
+	public void audit(EntityType entity)
 	{
 		this.checkNull(entity);
-		entity.setAduit(true);
+		entity.setAudit(true);
 		this.update(entity);
 	}
 
@@ -366,7 +366,7 @@ public abstract class BaseDaoImpl<PKUID extends Number, EntityType extends Abstr
 	public void unAudit(EntityType entity)
 	{
 		this.checkNull(entity);
-		entity.setAduit(false);
+		entity.setAudit(false);
 		this.update(entity);
 	}
 }

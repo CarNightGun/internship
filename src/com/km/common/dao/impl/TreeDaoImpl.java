@@ -125,12 +125,18 @@ public abstract class TreeDaoImpl<PKUID extends Number, EntityType extends Abstr
 	public void delete(EntityType entity)
 	{
 		super.checkNull(entity);
-		if (entity.getChildren() != null || !entity.getChildren().isEmpty())
+		if (entity.getChildren() == null || entity.getChildren().isEmpty())
 		{
-			throw new KmException("cannot delete the entity when  has childrens");
+			if(entity.getParent() == null){
+				super.delete(entity); 
+			}else{
+				entity.getParent().getChildren().remove(entity);
+				super.update(entity.getParent());
+				super.delete(entity);  
+			}
 		} else
 		{
-			super.delete(entity);
+			throw new KmException("cannot delete the entity when  has childrens");
 		}
 	}
 
