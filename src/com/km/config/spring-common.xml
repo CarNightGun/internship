@@ -11,13 +11,14 @@
 	<!-- 方便使用注解注入实例对象 -->
 	<!-- <context:component-scan base-package="com.km.*"/> -->
 
-	<!-- use-default-filters="false" 只扫描指定的注解 -->
+	<!-- use-default-filters="false" 只扫描指定的注解此处为指定 Repository的范围-->
 	<context:component-scan base-package="com.km.dao,com.km.common.dao"
 		use-default-filters="false">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Repository" />
 	</context:component-scan>
 
+	<!-- 此处指定为Service的范围 -->
 	<context:component-scan base-package="com.km.service,com.km.common.service"
 		use-default-filters="false">
 		<context:include-filter type="annotation"
@@ -28,7 +29,7 @@
    <import resource="mybean.xml"/>
    
 
-
+	<!-- 指定需要引入的数据库连接属性配置文件 -->
 	<bean id="jdbcPropertyConfig"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="ignoreUnresolvablePlaceholders" value="true"></property>
@@ -42,19 +43,34 @@
 	<!-- 定义数c3p0据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
+		<!-- 驱动名称 -->
 		<property name="driverClass" value="${jdbc.driver_class}" />
+		<!-- 用户名 -->
 		<property name="user" value="${jdbc.user}" />
+		<!-- 密码 -->
 		<property name="password" value="${jdbc.password}" />
+		<!-- 连接串 -->
 		<property name="jdbcUrl" value="${jdbc.url}" />
+		<!-- 连接池的最小值 -->
 		<property name="minPoolSize" value="${jdbc.min_size}" />
+		<!-- 连接池的最大值 -->
 		<property name="maxPoolSize" value="${jdbc.max_size}" />
-		<property name="maxStatements" value="${jdbc.max_statements}" /><!-- 
-			最大缓存对象 -->
+		<!-- 最大缓存对象 -->
+		<property name="maxStatements" value="${jdbc.max_statements}" />
+		<!-- 初始化连接池大小 -->
 		<property name="initialPoolSize" value="${jdbc.init_size}" />
+		<!-- 表示idle状态的connection能存活的最大时间 -->
 		<property name="maxIdleTime" value="${c3p0.maxIdleTime}" />
 	</bean>
 
 	<!-- 配置hibernate的sessionFactory 注入数据源 -->
+	<!-- hibernate.dialect指定要使用的数据库方言 -->
+	<!-- hibernate.hbm2ddl.auto 指定schema更新方式 -->
+	<!-- hibernate.show_sql 是否显示执行的sql -->
+	<!-- hibernate.format_sql 是否格式化显示的sql -->
+	<!-- hibernate.jdbc.batch_size 每次抓取数据的大小 -->
+	<!-- hibernate.default_batch_fetch_size 关联的批量抓取设置默认数量 --> 
+	<!-- hibernate.max_fetch_depth 设置外连接抓取树的最大深度 -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -69,6 +85,7 @@
 				hibernate.max_fetch_depth = ${hibernate.max_fetch_depth}
 			</value>
 		</property>
+		<!-- 指定实体扫描范围 -->
 		<property name="packagesToScan">
 			<list>
 				<value>com.km.bean</value>
@@ -78,7 +95,8 @@
 	</bean>
 
 
-	<!-- 事务管理 注：事实上当事务管理器名字为transactionManager时，就不需要加transaction-manager属性 -->
+	<!-- 事务管理 注：事实上当事务管理器名字为transactionManager时，
+	就不需要加transaction-manager属性 -->
 	<aop:aspectj-autoproxy expose-proxy="true" />
 	<tx:annotation-driven transaction-manager="kmManager" />
 	<bean id="kmManager"

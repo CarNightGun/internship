@@ -381,6 +381,20 @@
                 }
             }
         },
+        childrenIds: function() {
+        	 var base = $(this).data("treeLite");
+        	 var _arrIds = "";
+        	 base.$selector.find("li[" + base.selected + "='selected']").children().children('li').each(
+        		function(index,elem){ 
+        			_arrIds += $(elem).attr(base.nodeId) + ",";
+        		 }	 
+        	 );
+        	 if(_arrIds.length > 0){
+        		 _arrIds =  _arrIds.substring(0, _arrIds.length - 1);
+        	 }
+        	 return _arrIds;
+        	
+		},
         parentValue: function () {
             var base = $(this).data("treeLite");
             return base.$selector.find("li[" + base.selected + "='selected']").parent().parents("li").attr(base.nodeValue);

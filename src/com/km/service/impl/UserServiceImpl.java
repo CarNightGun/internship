@@ -69,7 +69,9 @@ public class UserServiceImpl extends BaseServiceImpl<Long, User, IUserDao> imple
 		}
 
 		// 懒加载 提前实例化 Failed to lazily initialize a collection
-		Hibernate.initialize(user.getRole().getAuthorities());
+		if(user != null){
+			Hibernate.initialize(user.getRole().getAuthorities());
+		}
 		return user;
 	}
 

@@ -127,7 +127,7 @@
                     if(parentId != undefined){
                         location.href = "<%= UrlUtil.resolveWithReturnUrl("/authority/add/{0}", requestUrl, requestQuery, "expanded={1}", pageContext)%>".replace("{0}", parentId).replace(escape("{1}"), expanded);
                     } else{
-                        alert("必须选择择一个节点！");
+                        alert("必须选择一个节点！");
                     }
                     return false;
                   } 
@@ -140,7 +140,7 @@
                     if(selectedId != undefined){
                     	location.href = "<%= UrlUtil.resolveWithReturnUrl("/authority/add/{0}", requestUrl, requestQuery, "expanded={1}", pageContext)%>".replace("{0}", selectedId).replace(escape("{1}"), expanded);
                     }else{
-                        alert("必须选择择一个节点！");
+                        alert("必须选择一个节点！");
                     }
                     return false;
                    }
@@ -150,10 +150,10 @@
                  click: function() {
                     var selectedId = $('#treeData-list').treeLite('selectedId');
                     var expanded = $('#treeData-list').treeLite('expandedIds');
-                    if(selectedId != undefined){ 
+                    if(selectedId != undefined && selectedId != "0"){ 
                     	location.href = "<%= UrlUtil.resolveWithReturnUrl("/authority/edit/{0}", requestUrl, requestQuery, "expanded={1}", pageContext)%>".replace("{0}", selectedId).replace(escape("{1}"), expanded);
                     }else{
-                        alert("必须选择择一个节点！");
+                        alert("必须选择一个节点！");
                     }
                     return false;
                     } 
@@ -163,14 +163,19 @@
                  click: function() {
                     var selectedId = $('#treeData-list').treeLite('selectedId');
                     var expanded = $('#treeData-list').treeLite('expandedIds');
-                    if(selectedId && selectedId != undefined) 
+                    var childrenIds = $('#treeData-list').treeLite('childrenIds');
+                    if(selectedId && selectedId != undefined && selectedId != "0") 
                     {
-                        if(confirm("确认删除所选节点？")){
+                    	if(childrenIds != "")
+                    	{
+                    		alert("有孩子节点不能删除！");
+                    	} else if(confirm("确认删除所选节点？"))
+                    	{
                         	location.href = "<%= UrlUtil.resolveWithReturnUrl("/authority/delete/{0}", requestUrl, requestQuery, "expanded={1}", pageContext)%>".replace("{0}", selectedId).replace(escape("{1}"), expanded);
                         }
                     }
                     else{
-                        alert("必须选择择一个节点！");
+                        alert("必须选择一个节点！");
                     }
                     return false;
                    } 
