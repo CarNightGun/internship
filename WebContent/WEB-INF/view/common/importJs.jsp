@@ -34,5 +34,8 @@
    <!-- 开始页面级脚本 -->
    <script src="<c:url value='/js/app.js'/>" type="text/javascript"></script>
    <script  src="<c:url value='/js/jquery.treeLite.js?ver=10'/>" type="text/javascript" ></script>
-   <script src="<c:url value='/js/index.js'/>" type="text/javascript"></script>  
+   <script src="<c:url value='/js/index.js'/>" type="text/javascript"></script>
+   
+      <script src="<c:url value='/js/fileinput.js'/>" type="text/javascript"></script>
+       <script src="<c:url value='/js/fileinput_locale_zh.js'/>" type="text/javascript"></script>
    <!-- 结束页面级脚本 -->  

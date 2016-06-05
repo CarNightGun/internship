@@ -13,18 +13,12 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-
-
-
 
 import com.km.bean.Organization;
 import com.km.bean.Role;
 import com.km.bean.User;
 import com.km.common.service.impl.BaseServiceImpl;
 import com.km.dao.IUserDao;
-import com.km.service.IAuthorityService;
 import com.km.service.IOrganizationService;
 import com.km.service.IRoleService;
 import com.km.service.IUserService;
@@ -35,7 +29,7 @@ import com.km.util.page.PageUtil;
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月12日下午2:24:42
  */
 @Service
-@Transactional
+@org.springframework.transaction.annotation.Transactional
 public class UserServiceImpl extends BaseServiceImpl<Long, User, IUserDao> implements IUserService
 {
 	

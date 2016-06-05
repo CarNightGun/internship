@@ -1,5 +1,7 @@
 package com.km.service;
 
+import java.util.Map;
+
 import com.km.bean.Organization;
 import com.km.common.service.ITreeService;
 import com.km.dao.IOrganizationDao;
@@ -12,5 +14,7 @@ public interface IOrganizationService extends ITreeService<Long, Organization, I
 	
 	public void updateOrg(Organization org);
 
-
+	public Map<Long, String> getSelectMajor();
+	
+	public Map<Long, String> getSelectStuClass();
 }

@@ -10,5 +10,7 @@
     <link href="<c:url value='/css/themes/default.css'/>" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="<c:url value='/css/custom.css'/>" rel="stylesheet" type="text/css"/>
     
+    <link href="<c:url value='/css/fileinput.css'/>" media="all" rel="stylesheet" type="text/css"/>
+    
     <!-- table -->
     <link rel="stylesheet" href="<c:url value='/plugins/data-tables/DT_bootstrap.css'/>" type="text/css"/>

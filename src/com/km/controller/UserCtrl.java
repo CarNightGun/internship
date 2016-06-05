@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
 
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,13 +20,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
- 
-
-
-
-
-
 import com.km.bean.Authority;
+import com.km.bean.CostPlan;
 import com.km.bean.User;
 import com.km.common.controller.BaseController;
 import com.km.util.StringUtil;
@@ -185,6 +178,7 @@ public class UserCtrl extends BaseController
 		return "redirect:"+returnUrl;
 	}
 	
+	@AuthRight
 	@RequestMapping(value="/delete/{id}")
 	public String deleteUser(HttpServletRequest request,@PathVariable(value="id")String userids){
 		
@@ -204,7 +198,7 @@ public class UserCtrl extends BaseController
 		return "redirect:/user/login";
 	}
 	
-	
+	@AuthRight
 	@RequestMapping(value="/authorize/{id}", method = {RequestMethod.GET})
     public String authorize(HttpServletRequest request, Model model, @PathVariable(value="id") Long id){	
 		if(!model.containsAttribute(contentModel)){
@@ -229,7 +223,7 @@ public class UserCtrl extends BaseController
         return "user/authorize";
     }
 
-	
+	@AuthRight
 	@RequestMapping(value="/authorize/{id}", method = {RequestMethod.POST})
 	public String authorize(HttpServletRequest request, Model model, @Valid @ModelAttribute("contentModel") UserAuthorizeModel userAuthorizeModel, @PathVariable(value="id") Long id, BindingResult result){
 		if(result.hasErrors()){
@@ -241,6 +235,38 @@ public class UserCtrl extends BaseController
         if(returnUrl==null)
         	returnUrl="user/list";
     	return "redirect:"+returnUrl; 	
+	}
+	
+	
+	@AuthRight
+	@RequestMapping(value = "/edit/{id}", method =
+	{ RequestMethod.GET })
+	public String edit(HttpServletRequest request, Model model,@Valid @PathVariable(value="id")Long pkuid)
+	{
+		if (!model.containsAttribute(contentModel))
+		{
+			User user = userService.get(pkuid);
+			model.addAttribute(contentModel, user);
+		}
+		return "user/edit";
+	}
+	
+	@AuthRight
+	@RequestMapping(value = "/edit/{id}", method =
+	{ RequestMethod.POST })
+	public String edit(HttpServletRequest request, Model model,
+			@Valid @ModelAttribute("contentModel") User editModel, BindingResult result,@Valid @PathVariable(value="id")Long pkuid)
+	{
+		if (result.hasErrors()){
+			return edit(request, model, pkuid);
+		}
+
+		String returnUrl = ServletRequestUtils.getStringParameter(request, "returnUrl", null);
+
+		userService.update(editModel);
+		if (returnUrl == null)
+			returnUrl = "costplan/list";
+		return "redirect:" + returnUrl;
 	}
 	
 	

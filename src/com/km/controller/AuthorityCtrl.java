@@ -58,7 +58,7 @@ public class AuthorityCtrl extends BaseController
 		return "authority/chain";
 	}
 	
-//	@AuthRight
+	@AuthRight
 	@RequestMapping(value="/delete/{id}" , method = RequestMethod.GET)
 	public String delete(HttpServletRequest request, Model model, @PathVariable(value="id") Long id){
 		boolean del = authorityService.deleteById(id);
@@ -97,7 +97,7 @@ public class AuthorityCtrl extends BaseController
 	}
 	
 	
-//	@AuthRight
+	@AuthRight
 	@RequestMapping(value = "/add/{id}", method = {RequestMethod.POST})
     public String add(HttpServletRequest request, Model model, @Valid @ModelAttribute(contentModel) AuthorityEditModel editModel, @PathVariable(value="id") Long id, BindingResult result) {
         if(result.hasErrors()){
@@ -136,11 +136,12 @@ public class AuthorityCtrl extends BaseController
         return "authority/edit";	
 	}
 	
-//	@AuthRight
+	@AuthRight
 	@RequestMapping(value = "/edit/{id}", method = {RequestMethod.POST})
     public String edit(HttpServletRequest request, Model model, @Valid @ModelAttribute(contentModel) AuthorityEditModel editModel, @PathVariable(value="id") Long id, BindingResult result){
-        if(result.hasErrors())
+        if(result.hasErrors()){
             return edit(request, model, id);
+        }
         
         String returnUrl = ServletRequestUtils.getStringParameter(request, "returnUrl", null);
         

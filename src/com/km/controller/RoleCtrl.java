@@ -72,8 +72,9 @@ public class RoleCtrl extends BaseController
 	public String add(HttpServletRequest request, Model model,
 			@Valid @ModelAttribute("contentModel") Role editModel, BindingResult result)
 	{
-		if (result.hasErrors())
+		if (result.hasErrors()){
 			return add(request, model);
+		}
 
 		String returnUrl = ServletRequestUtils.getStringParameter(request, "returnUrl", null);
 		Role role = editModel;

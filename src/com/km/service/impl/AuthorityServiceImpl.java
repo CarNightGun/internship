@@ -13,6 +13,7 @@ import com.km.service.IAuthorityService;
  * @author tcn 空幕 email:1623092203@qq.com time:2016年5月20日上午8:34:29
  */
 @Service
+@org.springframework.transaction.annotation.Transactional
 public class AuthorityServiceImpl extends TreeServiceImpl<Long, Authority, IAuthorityDao> implements
 		IAuthorityService
 {

@@ -147,9 +147,9 @@
            items: [
 			   { link: true, display: "新建", css: "icon-plus", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/role/add", requestUrl, requestQuery, pageContext)%>" },
 			   { splitter: true }, 
-               { link: true, display: "编辑", css: "icon-edit", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/role/edit/{0}", requestUrl, requestQuery, pageContext)%>", 
+               <%-- { link: true, display: "编辑", css: "icon-edit", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/role/edit/{0}", requestUrl, requestQuery, pageContext)%>", 
                   	selector: "#data-table .checkboxes", mustSelect: "请先选择数据！", singleSelect: "该操作只支持单选！"},
-               { splitter: true }, 
+               { splitter: true }, --%> 
                { link: true, display: "启用", css: "icon-ok", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/enable/{0}", requestUrl, requestQuery, pageContext)%>",
               	 selector: "#data-table .checkboxes", mustSelect: "请先选择数据！", singleSelect: "该操作只支持单选！"},
                { splitter: true }, 

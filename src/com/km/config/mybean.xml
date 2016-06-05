@@ -12,6 +12,11 @@
 	<bean class="com.km.bean.Authority" scope="prototype"/>
 	<bean class="com.km.bean.Organization" scope="prototype"/>
 	<bean class="com.km.bean.User" scope="prototype"/>
+	<bean class="com.km.bean.CostPlan" scope="prototype"/>
+	<bean class="com.km.bean.MajorPlan" scope="prototype"/>
+	<bean class="com.km.bean.Unit" scope="prototype"/>
+	<bean class="com.km.bean.Student" scope="prototype"/>
+	<bean class="com.km.bean.CostListDetail" scope="prototype"/>
 			
 			
 			

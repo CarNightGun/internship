@@ -7,7 +7,7 @@
 	<!-- 开始顶部导航栏 -->
 	<div class="header-inner" >
 		<!-- 开始logo -->
-	<a class="navbar-brand" style="min-width: 217px;"><span >实习经费管理系统<small><small>@理工大学</small></small></span></a>
+	<a class="navbar-brand" style="min-width: 317px;"><span >实习经费管理系统<small><small>@理工大学</small></small></span></a>
 		<!-- 结束logo -->
 
 		<!-- 开始菜单显示开关响应 -->

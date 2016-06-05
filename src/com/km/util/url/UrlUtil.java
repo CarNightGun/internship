@@ -46,6 +46,8 @@ public class UrlUtil
 							returnUrl.toString()
 									+ resolveQuery(returnQuery != null ? returnQuery.toString()
 											: null, null), "UTF-8"));
+		}else if((returnUrl == null || returnUrl.toString().isEmpty()) && returnQuery != null && !returnQuery.toString().isEmpty()){
+			urlBuilder.append("?").append(returnQuery);
 		}
 		return urlBuilder.toString();
 	}

@@ -1,6 +1,9 @@
 package com.km.bean;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.km.common.bean.AbstractBaseEntity;
@@ -13,7 +16,7 @@ import com.km.common.bean.AbstractBaseEntity;
 public class Unit extends AbstractBaseEntity<Long>
 {
 
-
+	//单位名称
 	private String unitName;
 	
 	//地址
@@ -24,6 +27,10 @@ public class Unit extends AbstractBaseEntity<Long>
 	
 	//通讯电话
 	private String telphone;
+	
+	
+	@OneToMany(mappedBy="unit")
+	private List<Student> students;
 
 	public String getUnitName()
 	{
@@ -63,6 +70,16 @@ public class Unit extends AbstractBaseEntity<Long>
 	public void setTelphone(String telphone)
 	{
 		this.telphone = telphone;
+	}
+
+	public List<Student> getStudents()
+	{
+		return students;
+	}
+
+	public void setStudents(List<Student> students)
+	{
+		this.students = students;
 	}
 	
 	

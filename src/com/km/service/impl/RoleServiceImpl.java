@@ -11,7 +11,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.km.bean.Authority;
 import com.km.bean.Role;
@@ -27,7 +26,7 @@ import com.km.util.page.PageUtil;
  */
 
 @Service
-@Transactional
+@org.springframework.transaction.annotation.Transactional
 public class RoleServiceImpl extends BaseServiceImpl<Long, Role, IRoleDao> implements IRoleService
 {
 

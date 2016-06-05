@@ -1,5 +1,6 @@
 package com.km.common.controller;
 
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,7 +12,6 @@ import org.apache.log4j.Logger;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.km.util.KmException;
 import com.km.util.auth.AuthUtil;
 import com.km.web.auth.AuthRight;
 import com.km.web.auth.PermissionMenu;
@@ -69,7 +69,21 @@ public class MyInterceptor extends HandlerInterceptorAdapter
 
 					} else
 					{
-						throw new KmException("no permission！");
+						StringBuilder curl = new StringBuilder(request.getContextPath());
+						request.getQueryString();
+						if(request.getParameter("returnUrl") != null && !request.getParameter("returnUrl").isEmpty()){
+							curl.append(request.getParameter("returnUrl"));
+						}else{
+							curl.append("/home/index");
+						}
+						 
+						response.setContentType("text/html; charset=UTF-8");
+						PrintWriter out = response.getWriter();
+						out.print(" <script language='javascript'>alert('没有权限,请联系管理员！');window.location='"+ curl.toString() +"';</script>");
+						out.flush();
+						out.close();
+						return false;
+
 					}
 				} else
 				{

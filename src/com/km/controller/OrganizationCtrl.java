@@ -59,7 +59,7 @@ public class OrganizationCtrl extends BaseController
 		return "organization/chain";
 	}
 	
-//	@AuthRight
+	@AuthRight
 	@RequestMapping(value="/delete/{id}" , method = RequestMethod.GET)
 	public String delete(HttpServletRequest request, Model model, @PathVariable(value="id") Long id){
 		boolean del = organizationService.deleteById(id);
@@ -98,7 +98,7 @@ public class OrganizationCtrl extends BaseController
 	}
 	
 	
-//	@AuthRight
+	@AuthRight
 	@RequestMapping(value = "/add/{id}", method = {RequestMethod.POST})
     public String add(HttpServletRequest request, Model model, @Valid @ModelAttribute(contentModel) OrganizationEditModel editModel, @PathVariable(value="id") Long id, BindingResult result) {
         if(result.hasErrors()){
@@ -137,7 +137,7 @@ public class OrganizationCtrl extends BaseController
         return "organization/edit";	
 	}
 	
-//	@AuthRight
+	@AuthRight
 	@RequestMapping(value = "/edit/{id}", method = {RequestMethod.POST})
     public String edit(HttpServletRequest request, Model model, @Valid @ModelAttribute(contentModel) OrganizationEditModel editModel, @PathVariable(value="id") Long id, BindingResult result){
         if(result.hasErrors())

@@ -37,7 +37,10 @@ public class Student extends AbstractBaseEntity<Long>
 	@JoinColumn
 	private MajorPlan majorPlan;
 	
-	
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn
+	private Unit unit;
+		
 	private String stuYear;
 	
 	private String stuNo;
@@ -131,6 +134,17 @@ public class Student extends AbstractBaseEntity<Long>
 	{
 		this.stuNo = stuNo;
 	}
+
+	public Unit getUnit()
+	{
+		return unit;
+	}
+
+	public void setUnit(Unit unit)
+	{
+		this.unit = unit;
+	}
+	
 	
 	
 }
