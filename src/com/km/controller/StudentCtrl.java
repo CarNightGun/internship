@@ -73,7 +73,7 @@ public class StudentCtrl extends BaseController
 	
 	@AuthRight
 	@RequestMapping(value="/delete/{id}")
-	public String deleteUser(HttpServletRequest request,@PathVariable(value="id")String userids){
+	public String deleteRoles(HttpServletRequest request,@PathVariable(value="id")String userids){
 		
 		studentService.delete(userids);
 		

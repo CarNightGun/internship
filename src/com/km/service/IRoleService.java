@@ -14,4 +14,8 @@ public interface IRoleService extends IBaseService<Long, Role, IRoleDao>
 	public IPageList<Role> listPage(Role search, int pageNo, int pageSize);
 
 	public void saveAuthorize(Long roleId, Long[] authorityIds);
+
+	public void changeAuditState(String pkuids);
+
+	public void delete(String roleids);
 }

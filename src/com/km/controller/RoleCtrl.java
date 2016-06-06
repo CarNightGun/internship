@@ -124,11 +124,46 @@ public class RoleCtrl extends BaseController
 		if (result.hasErrors()){
 			return bind(request, model, id);
 		}
+		
+		
+		
 		roleService.saveAuthorize(id,
 				ArraysUtil.removeArrayItem(roleBindModel.getAuthorityIds(), new Long(0)));
+		
+		Role role = roleService.get(id);
+		role.setName(roleBindModel.getName());
+		roleService.update(role);
 		String returnUrl = ServletRequestUtils.getStringParameter(request, "returnUrl", null);
 		if (returnUrl == null)
 			returnUrl = "role/list";
 		return "redirect:" + returnUrl;
 	}
+	
+	@AuthRight
+	@RequestMapping(value="/changeaudit/{id}",method = RequestMethod.GET)
+	public String changeAuditState(HttpServletRequest request,@PathVariable(value="id") String pkuid){
+
+		roleService.changeAuditState(pkuid);
+		String returnUrl = ServletRequestUtils.getStringParameter(request, "returnUrl", null);
+		if (returnUrl == null){
+			returnUrl = "/home/index";
+		}
+		return "redirect:"+returnUrl;
+	}
+	
+	
+	@AuthRight
+	@RequestMapping(value="/delete/{id}")
+	public String deleteUser(HttpServletRequest request,@PathVariable(value="id")String roleids){
+		
+		roleService.delete(roleids);
+		
+		 String returnUrl = ServletRequestUtils.getStringParameter(request, "returnUrl", null);
+		if (returnUrl == null){
+			returnUrl = "/home/index";
+		}
+		return "redirect:"+returnUrl;
+	}
+	
+	
 }

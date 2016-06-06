@@ -2,6 +2,8 @@ package com.km.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.km.bean.Authority;
 import com.km.bean.Role;
+import com.km.bean.User;
 import com.km.common.service.impl.BaseServiceImpl;
 import com.km.dao.IRoleDao;
 import com.km.service.IAuthorityService;
@@ -80,6 +83,58 @@ public class RoleServiceImpl extends BaseServiceImpl<Long, Role, IRoleDao> imple
 		role.setAuthorities(authorities);
 		super.update(role);
 
+	}
+
+	@Override
+	public void changeAuditState(String pkuids)
+	{
+		if (pkuids == null || pkuids.isEmpty())
+		{
+			return;
+		}
+
+		Pattern p = Pattern.compile("^([0-9]+,?)*[0-9]+");
+		Matcher m = p.matcher(pkuids);
+		if (!m.find())
+		{
+			return;
+		}
+
+		String[] pkuidArr = pkuids.split(",");
+		for (String pkuid : pkuidArr)
+		{
+			Role u = baseDao.get(Long.parseLong(pkuid));
+			if (u.isAudit())
+			{
+				baseDao.unAudit(u);
+			} else
+			{
+				baseDao.audit(u);
+			}
+		}
+		
+	}
+
+	@Override
+	public void delete(String roleids)
+	{
+		if (roleids == null || roleids.isEmpty())
+		{
+			return;
+		}
+
+		Pattern p = Pattern.compile("^([0-9]+,?)*[0-9]+");
+		Matcher m = p.matcher(roleids);
+		if (!m.find())
+		{
+			return;
+		}
+		String[] pkuidArr = roleids.split(",");
+		for (String pkuid : pkuidArr)
+		{
+			baseDao.deleteById(Long.parseLong(pkuid));
+		}
+		
 	}
 
 }

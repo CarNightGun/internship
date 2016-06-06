@@ -50,7 +50,7 @@
                
                <!-- 开始页面的标题和面包屑-->
                <h3 class="page-title">
-                  	用户信息 <small>中心</small>
+                  	实习经费报销 <small>中心</small>
                </h3>
                <ul class="page-breadcrumb breadcrumb">
                   <li>
@@ -86,71 +86,59 @@
                   <div class="portlet-body form">
                      <form:form modelAttribute="contentModel" class="form-horizontal" method="POST">
                         <div class="form-body">
-                        <div class="form-group">
-                              <label  class="col-md-2 control-label">名称</label>
+                        <form:hidden path="pkuid"/>
+                        	<div class="form-group">
+                              <label  class="col-md-2 control-label">费用名称</label>
                               <div class="col-md-10">
-                                 <form:input path="name" required="required" autofocus="autofocus" class="form-control" placeholder="实习经费计划名称"/><br/>
+                                 <form:select path="costClass.pkuid" class="form-control" required="required">  
+					                <option value="">请选择</option>  
+					                <form:options items="${selectCostClassDataSource}"/>  
+					           	 </form:select>
                               </div>
                            </div> 
                            <div class="form-group">
-                              <label  class="col-md-2 control-label">用户名</label>
+                              <label  class="col-md-2 control-label">费用说明</label>
                               <div class="col-md-10">
-                                 <form:input path="accountName" required="required" class="form-control" placeholder="实习经费计划说明"/><br/>
+                                 <form:textarea path="remark" required="required"  class="form-control" placeholder="费用说明"/><br/>
                               </div>
                            </div> 
+                           
                            <div class="form-group">
-                              <label  class="col-md-2 control-label">电话</label>
+								 <label class="control-label col-md-2">报销凭证</label>
+								 <div class="col-md-10">
+									<form:select path="wipeCost.pkuid" class="form-control" required="required" >  
+						                <option value="">请选择</option>  
+						                <form:options items="${selectWipeCostDataSource}"/>  
+					           	 	</form:select>
+								 </div>
+							</div>
+  
+                           
+                           <div class="form-group">
+                              <label  class="col-md-2 control-label">实习类别</label>
                               <div class="col-md-10">
-                                 <form:input path="phone"   required="required" class="form-control" placeholder="如 2015"/><br/>
+                                 <form:select path="internClass" class="form-control" required="required">  
+					                <option value="">请选择</option>  
+					                <form:options items="${selectInternClassDataSource}"/>  
+					           	 </form:select>
                               </div>
-                           </div>  
+                           </div>
+                           
                            <div class="form-group">
-                              <label  class="col-md-2 control-label">性别</label>
+                              <label  class="col-md-2 control-label">报销单据编号</label>
                               <div class="col-md-10">
-                                 <form:input path="sex"   required="required" class="form-control" /><br/>
+                                 <form:input path="wipedDocNumber"   class="form-control"  required="required" /><br/>
                               </div>
                            </div>
                            <div class="form-group">
-                              <label  class="col-md-2 control-label">所属机构</label>
+                              <label  class="col-md-2 control-label">报销费用</label>
                               <div class="col-md-10">
-                                 <form:input path="organization.name"  required="required" class="form-control" /><br/>
+                                 <form:input path="amount" type="number" min="0" step="0.01"  class="form-control"  required="required" /><br/>
                               </div>
-                           </div> 
-                           <div class="form-group">
-                              <label  class="col-md-2 control-label">角色</label>
-                              <div class="col-md-10">
-                                 <form:input path="role.name"    required="required" class="form-control" /><br/>
-                              </div>
-                           </div> 
-                           <div class="form-group">
-                              <label  class="col-md-2 control-label">是否已启用</label>
-                              <div class="col-md-10">
-                                 <p class="form-control-static">
-                                 	${contentModel.audit == true ? "是" : "否"}
-                                 </p>
-                              </div>
-                           </div> 
-                           <div class="form-group">
-                              <label  class="col-md-2 control-label">邮件</label>
-                              <div class="col-md-10">
-                                 <form:input path="email" type="number" min="0" step="0.01" required="required" class="form-control" /><br/>
-                              </div>
-                           </div> 
-                           <div class="form-group">
-                              <label  class="col-md-2 control-label">真实姓名</label>
-                              <div class="col-md-10">
-                                 <form:input path="realName"   required="required" class="form-control" /><br/>
-                              </div>
-                           </div> 
-                           <div class="form-group">
-                              <label  class="col-md-2 control-label">头像</label>
-                              <div class="col-md-10">
-                                 <form:input path="photourl" data-toggle="tooltip"  required="required" class="form-control"/><br/>
-                              </div>
-                           </div> 
-                                                                                   
-                        </div>
-                        <div class="form-actions fluid">
+                           </div>
+  
+                       </div>
+                       <div class="form-actions fluid">
                            <div class="col-md-offset-6 col-md-6">
                               <button type="submit" class="btn btn-success">保存</button>                             
                            </div>
@@ -180,6 +168,62 @@
    $(function() {   
        App.init();
        
+       $(".col-md-10 #price").on("blur",function(){
+    	   setTimeout(tipYou(),1000); 
+    	   
+       });
+   
+        
+    });
+   var price = $(".col-md-10 #price").val();
+   var pkuid = $("#pkuid[type=hidden]").val();
+   
+   function tipYou(){
+	   
+	  
+	   var inputValue = 0;
+	   if(pkuid > 0){
+		   inputValue = $(".col-md-10 #price").val() - price;
+	   }else{
+		   inputValue = $(".col-md-10 #price").val();
+	   }
+	   
+	   var majorPlanId = $("select[id='majorPlan.pkuid']").val();
+	   if(majorPlanId == ""){
+		   return;
+	   }
+	   
+	   var costCategoryId = $("select[id='costCategory.pkuid']").val();
+	   if(costCategoryId == ""){
+		   return;
+	   }
+	   
+	   var mydata = {"inputValue":inputValue,"majorPlanId":majorPlanId,"costCategoryId":costCategoryId };
+	   
+	   var url = "<%=UrlUtil.resolveUrl("/costlistdetail/timing",pageContext)%>";
+	   
+	   $.ajax({
+		   type : "post",
+		   async : false, //同步请求
+		   url : url,
+		   dataType: "json",
+		   data : mydata,
+		   success:function(data){			
+			   var costname = "";
+			   if(data.isConnectionFee == true){
+				   costname = "实习联系费";
+			   }else{
+				   costname ="本专科实习费";
+			   }
+			$(".col-md-10 #price").attr("data-original-title",costname+"总计为:"+data.usableTotalAmount+",剩余可用额为:"+data.residueTotalAmount);
+			$(".col-md-10 #price").attr("max",data.residueTotalAmount);
+			$(".col-md-10 #price").tooltip();
+		   },
+		   error: function(edata) {
+			   console.log(edata);
+		   }
+		  });
+   }
  
    </script>
 

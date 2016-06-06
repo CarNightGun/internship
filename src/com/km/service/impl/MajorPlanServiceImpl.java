@@ -52,13 +52,11 @@ public class MajorPlanServiceImpl extends BaseServiceImpl<Long, MajorPlan, IMajo
 		Criteria countCriteria = baseDao.getCriteria();
 		Criteria listCriteria = baseDao.getCriteria();
 		
-		if(entity.getMajor() != null){
-			String majorName = entity.getMajor().getName();
-	
-			if (majorName != null )
+		if(entity != null){
+			if (entity.getMajor() !=null && entity.getMajor().getPkuid() != null  )
 			{
-				countCriteria.createCriteria("major").add(Restrictions.eq("name", majorName));
-				listCriteria.createCriteria("major").add(Restrictions.eq("name", majorName));
+				countCriteria.createCriteria("major").add(Restrictions.eq("pkuid", entity.getMajor().getPkuid()));
+				listCriteria.createCriteria("major").add(Restrictions.eq("pkuid", entity.getMajor().getPkuid()));
 			}
 		}
 		 

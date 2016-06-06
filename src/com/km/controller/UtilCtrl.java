@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.km.bean.CostPlan;
 import com.km.bean.Student;
 import com.km.bean.Unit;
 import com.km.common.controller.BaseController;

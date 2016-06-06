@@ -1,5 +1,7 @@
 package com.km.service;
 
+import java.util.List;
+
 import com.km.bean.User;
 import com.km.common.service.IBaseService;
 import com.km.dao.IUserDao;
@@ -22,4 +24,6 @@ public interface IUserService extends IBaseService<Long, User , IUserDao>
 	public void delete(String userids);
 
 	public void updateRoleOrg(Long id, Long roleId, Long organizationId);	
+	
+	public List<User> listAllAndInitOrgAndRole();
 }

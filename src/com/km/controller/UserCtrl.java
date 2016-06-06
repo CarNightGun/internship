@@ -183,7 +183,6 @@ public class UserCtrl extends BaseController
 	public String deleteUser(HttpServletRequest request,@PathVariable(value="id")String userids){
 		
 		userService.delete(userids);
-		
 		 String returnUrl = ServletRequestUtils.getStringParameter(request, "returnUrl", null);
 		if (returnUrl == null){
 			returnUrl = "/home/index";

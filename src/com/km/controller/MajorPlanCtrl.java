@@ -39,7 +39,8 @@ public class MajorPlanCtrl extends BaseController
     public String list(HttpServletRequest request, Model model,MajorPlan searchMajorPlan){ 			
     	model.addAttribute(requestUrl, request.getServletPath());
 		model.addAttribute(requestQuery, request.getQueryString());
-
+		
+		model.addAttribute("selectMajorDataSource", organizationService.getSelectMajor());
 		 model.addAttribute(searchModel, searchMajorPlan);
         int pageNo = ServletRequestUtils.getIntParameter(request, PageUtil.NAME_PAGE_NO, PageUtil.DEFAULT_PAGE_NO);
         int pageSize = ServletRequestUtils.getIntParameter(request, PageUtil.NAME_PAGE_SIZE, PageUtil.DEFAULT_PAGE_SIZE);      

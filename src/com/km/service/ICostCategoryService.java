@@ -13,5 +13,7 @@ public interface ICostCategoryService extends ITreeService<Long, CostCategory, I
 {
 	
 	public Map<Long, String> getSelectCostCategory();
+	
+	public Map<Long, String> getSelectCostClass();
 
 }

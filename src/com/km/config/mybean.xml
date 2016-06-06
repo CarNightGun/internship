@@ -17,6 +17,9 @@
 	<bean class="com.km.bean.Unit" scope="prototype"/>
 	<bean class="com.km.bean.Student" scope="prototype"/>
 	<bean class="com.km.bean.CostListDetail" scope="prototype"/>
+	<bean class="com.km.bean.WipeCost" scope="prototype"/>
+	<bean class="com.km.bean.WipeCostDetail" scope="prototype"/>
+	<bean class="com.km.bean.AuditHistory" scope="prototype"/>
 			
 			
 			

@@ -38,6 +38,9 @@ public class MajorPlan extends AbstractBaseEntity<Long>
  
 	@OneToMany(mappedBy="majorPlan")
 	private List<CostListDetail> costListDetail;
+	
+	@OneToMany(mappedBy="majorPlan")
+	private List<WipeCost> wipeCosts;
 
 	//总的专业实习费用
 	private Double totalAmount = 0d;
@@ -251,6 +254,18 @@ public class MajorPlan extends AbstractBaseEntity<Long>
 	public void setCollegeStuFee(Double collegeStuFee)
 	{
 		this.collegeStuFee = CommonUtil.formatDouble(collegeStuFee);
+	}
+
+
+	public List<WipeCost> getWipeCosts()
+	{
+		return wipeCosts;
+	}
+
+
+	public void setWipeCosts(List<WipeCost> wipeCosts)
+	{
+		this.wipeCosts = wipeCosts;
 	}
 
 

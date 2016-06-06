@@ -22,6 +22,7 @@ import com.km.dao.IUserDao;
 import com.km.service.IOrganizationService;
 import com.km.service.IRoleService;
 import com.km.service.IUserService;
+import com.km.util.LazyUtil;
 import com.km.util.page.IPageList;
 import com.km.util.page.PageUtil;
 
@@ -167,5 +168,17 @@ public class UserServiceImpl extends BaseServiceImpl<Long, User, IUserDao> imple
 			user.setOrganization(null);
 		super.update(user);
 		
+	}
+
+	@Override
+	public List<User> listAllAndInitOrgAndRole()
+	{
+		List<User> us = baseDao.listAll();
+		for (User user : us)
+		{			
+			LazyUtil.initializeEntity(user.getOrganization());
+			LazyUtil.initializeEntity(user.getRole());
+		}
+		return us;
 	}
 }

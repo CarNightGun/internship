@@ -89,12 +89,14 @@
 							   <div class="col-md-6">
 								  <div class="form-group">
 									 <label class="control-label col-md-3">专业名</label>
-									 <div class="col-md-9 input-group">
-										<form:input path="major.name"  type="number" min="2015" step="1"  class="form-control placeholder-no-fix" autocomplete="off" placeholder="如软件工程"/>
+									 <div class="col-md-9 input-group">					 									 
+										<form:select path="major.pkuid" class="form-control">  
+							                <option value="">请选择</option>  
+							                <form:options items="${selectMajorDataSource}"/>  
+						           	 	</form:select>									 							 
 									 	<span class="input-group-btn">
        									 	<button type="submit" class="btn btn-success" type="button">搜索</button>
       									</span>
-									 </div>
 								  </div>
 							   </div>
 							</div>

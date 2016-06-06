@@ -61,6 +61,9 @@
 		<property name="initialPoolSize" value="${jdbc.init_size}" />
 		<!-- 表示idle状态的connection能存活的最大时间 -->
 		<property name="maxIdleTime" value="${c3p0.maxIdleTime}" />
+		
+		<!-- <property name="preferredTestQuery"><value>SELECT 1</value></property> -->
+		
 	</bean>
 
 	<!-- 配置hibernate的sessionFactory 注入数据源 -->

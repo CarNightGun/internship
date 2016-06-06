@@ -33,14 +33,14 @@ public class CostPlanCtrl extends BaseController
 	
 	@AuthRight
 	@RequestMapping(value="/list", method = {RequestMethod.GET})
-    public String list(HttpServletRequest request, Model model,CostPlan searchCostPlan){ 			
+    public String list(HttpServletRequest request, Model model,CostPlan search){ 			
     	model.addAttribute(requestUrl, request.getServletPath());
 		model.addAttribute(requestQuery, request.getQueryString());
 
-		 model.addAttribute(searchModel, searchCostPlan);
+		 model.addAttribute(searchModel, search);
         int pageNo = ServletRequestUtils.getIntParameter(request, PageUtil.NAME_PAGE_NO, PageUtil.DEFAULT_PAGE_NO);
         int pageSize = ServletRequestUtils.getIntParameter(request, PageUtil.NAME_PAGE_SIZE, PageUtil.DEFAULT_PAGE_SIZE);      
-        model.addAttribute(contentModel, costPlanService.listPage(searchCostPlan, pageNo, pageSize));
+        model.addAttribute(contentModel, costPlanService.listPage(search, pageNo, pageSize));
 
         return "costplan/list";
     }

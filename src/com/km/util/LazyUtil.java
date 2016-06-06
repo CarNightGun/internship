@@ -30,7 +30,7 @@ public class LazyUtil
 		}
 	}
 	
-	
+	@Deprecated
 	public static void initEntity(Object entity){
 		if(entity == null){
 			return;

@@ -89,9 +89,11 @@
                            <div class="form-group">
                               <label  class="col-md-2 control-label">名称</label>
                               <div class="col-md-10">
-                                <p class="form-control-static">
+                              <form:input path="name" class="form-control"  required="required"/>
+                              
+                                <%-- <p class="form-control-static">
                                  	${contentModel.name}
-                                </p>
+                                </p> --%>
                               </div>
                            </div> 
                            <div class="form-group">

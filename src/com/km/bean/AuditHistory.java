@@ -1,6 +1,7 @@
 package com.km.bean;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,10 +20,13 @@ public class AuditHistory extends AbstractBaseEntity<Long>
 	@JoinColumn
 	private WipeCost wipeCost;
 	
+	@Column
 	private String operatorName;
 	
-	private String explain;
+	@Column
+	private String explainRemark;
 	
+	@Column
 	private String auditResult;
 
 	public WipeCost getWipeCost()
@@ -45,14 +49,16 @@ public class AuditHistory extends AbstractBaseEntity<Long>
 		this.operatorName = operatorName;
 	}
 
-	public String getExplain()
+	 
+
+	public String getExplainRemark()
 	{
-		return explain;
+		return explainRemark;
 	}
 
-	public void setExplain(String explain)
+	public void setExplainRemark(String explainRemark)
 	{
-		this.explain = explain;
+		this.explainRemark = explainRemark;
 	}
 
 	public String getAuditResult()

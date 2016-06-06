@@ -50,7 +50,7 @@
                
                <!-- 开始页面的标题和面包屑-->
                <h3 class="page-title">
-                  	用户管理 <small>中心</small>
+                  	实习经费报销 <small>中心</small>
                </h3>
                <ul class="page-breadcrumb breadcrumb">
                   <li>
@@ -77,53 +77,54 @@
         <!--  开始页面内容 -->
           <div class="row">
             <div class="col-md-12">
-            
 				<div class="portlet box light-grey">
 				   <div class="portlet-title">
-					  <div class="caption"><i class="icon-search"></i>数据检索</div>
+					  <div class="caption"><i class="icon-search"></i>检索</div>
 				   </div>
 				   <div class="portlet-body form">
 					  <!-- form 开始-->
 					  <form:form modelAttribute="searchModel" class="form-horizontal" method="GET">
 						 <div class="form-body">
 							<div class="row">
-							   <%-- <div class="col-md-6">
-								  <div class="form-group">
-									 <label class="control-label col-md-3">姓名</label>
-									 <div class="col-md-9">
-										<form:input path="name" class="form-control placeholder-no-fix" autocomplete="off" placeholder="姓名"/>
-									 </div>
-								  </div>
-							   </div> --%>
-							   <!--/span-->
 							   <div class="col-md-6">
 								  <div class="form-group">
-									 <label class="control-label col-md-3">用户名</label>
-									 <div class="col-md-9 input-group">
-										<form:input path="accountName" class="form-control placeholder-no-fix" autocomplete="off" placeholder="用户名"/>
-									 	<span class="input-group-btn">
-       									 	<button type="submit" class="btn btn-success" type="button">搜索</button>
-      									</span>
+									 <label class="control-label col-md-3">报销凭证</label>
+									 <div class="col-md-9">
+										<form:select path="wipeCost.pkuid" class="form-control">  
+							                <option value="">请选择</option>  
+							                <form:options items="${selectWipeCostDataSource}"/>  
+						           	 	</form:select>
+									 </div>
+								  </div>
+							   </div>
+							   <div class="col-md-6">
+								  <div class="form-group">
+									 <label class="control-label col-md-3">会计科目</label>
+									 <div class="col-md-9">
+										<form:select path="accounting.pkuid" class="form-control">  
+							                <option value="">请选择</option>  
+							                <form:options items="${selectCostCategoryDataSource}"/>  
+						           	 	</form:select>
 									 </div>
 								  </div>
 							   </div>
 							    
 							</div>
+							<div class="form-actions">
+								<div class="row">
+								   <div class="col-md-12">
+									  <div class="col-md-offset-5">
+										 <button type="submit" class="btn btn-success">搜索</button>                            
+									  </div>
+								   </div>
+								</div>
+						 	</div>
 						 </div>
-						 <!-- <div class="form-actions">
-							<div class="row">
-							   <div class="col-md-12">
-								  <div class="col-md-offset-5">
-									 <button type="submit" class="btn btn-success">搜索</button>                            
-								  </div>
-							   </div>
-							</div>
-						 </div> -->
+						  
 					  </form:form>
 					  <!-- 结束form-->                
 				   </div>
 				</div>
-               
                <!-- 开始表单-->
                <div class="portlet box light-grey">
                   <div class="portlet-title">
@@ -137,26 +138,30 @@
 		                        <thead>
 		                           <tr>
 		                              <th class="table-checkbox"><input type="checkbox" class="group-checkable"/></th>
-		                              <th >用户名</th>
-		                              <th >邮箱</th>
-		                              <th >是否可用</th>
-		                              <th >机构名称</th>
-		                              <th >角色名称</th>
-		                              <th >注册时间</th>
+		                              <th >费用名称</th>
+		                              <th >会计科目编号</th>
+		                              <th >会计科目名称</th>
+		                              <th >所属凭证编号</th>
+		                              <th >所属凭证名称</th>
+		                              <th >单据编号</th>
+		                              <th >报销金额</th>
+		                              <th >实习类别</th>
 		                           </tr>
 		                        </thead>
 		                        <tbody>
 		                        	<c:forEach items="${contentModel.items}" var="item">
 							        <tr class="odd gradeX">
 							        	<td class="check_cell">
-									        <input type="checkbox" class="checkboxes" name="Id" value="${ item.pkuid }" />
+									        <input type="checkbox" class="checkboxes" name="pkuid" value="${ item.pkuid }" />
 									    </td>
-							            <td>${ item.accountName }</td>
-							            <td>${ item.email }</td>
-							            <td>${ item.audit=='true' ? '是' : '否'}</td> <%--三目表达式的每个运算符和值之间都有空格--%>
-							            <td>${ item.organization.name == null ? "系统中心" : item.organization.name }</td>
-							            <td>${ item.role.name }</td>
-							            <td>${ item.createTime.toLocaleString() }</td>
+							            <td>${ item.costClass.categoryName }</td>
+							            <td>${ item.accounting.categoryCode }</td>
+							            <td>${ item.accounting.categoryName }</td>
+							            <td>${ item.wipeCost.wipeCode }</td>  
+							            <td>${ item.wipeCost.wipeCostName }</td>  
+							            <td>${ item.wipedDocNumber }</td>
+							            <td>${ item.amount }</td>
+							            <td>${item.internClass == 0 ? "专业实习" : "毕业实习"}</td>
 							        </tr>
 							        </c:forEach>
 		                        </tbody>
@@ -164,7 +169,7 @@
 	                     </div>
 	                     <c:import url = "../common/paging.jsp">
 	        				<c:param name="pageModelName" value="contentModel"/>
-	        				<c:param name="urlAddress" value="/user/list"/>
+	        				<c:param name="urlAddress" value="/wipecostdetail/list"/>
 	       				 </c:import>
        				 </div>
                   </div>
@@ -199,16 +204,13 @@
        
        $(".table-toolbar").toolbarLite({
            items: [
-               { link: true, display: "改变状态", css: "icon-edit", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/changeaudit/{0}", requestUrl, requestQuery, pageContext)%>",
-              	 selector: "#data-table .checkboxes", mustSelect: "请先选择数据！"},
-              
-              <%--  { link: true, display: "禁用", css: "icon-remove", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/unaudit/{0}", requestUrl, requestQuery, pageContext)%>", 
-               	 selector: "#data-table .checkboxes", mustSelect: "请先选择数据！", singleSelect: "该操作只支持单选！"},
-               { splitter: true },  --%>
-               { link: true, display: "账户权限设置", css: "icon-user", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/authorize/{0}", requestUrl, requestQuery, pageContext)%>", 
-                 	 selector: "#data-table .checkboxes", mustSelect: "请先选择数据！", singleSelect: "该操作只支持单选！"},
-               { link: true, display: "删除", css: "icon-trash", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/user/delete/{0}", requestUrl, requestQuery, pageContext)%>", 
-                 	 selector: "#data-table .checkboxes", mustSelect: "请先选择数据！", confirm: "确认删除所选数据吗？"}
+               { link: true, display: "新建", css: "icon-plus", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/wipecostdetail/add", requestUrl, requestQuery, pageContext)%>" },
+               { splitter: true }, 
+               { link: true, display: "编辑", css: "icon-edit", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/wipecostdetail/edit/{0}", requestUrl, requestQuery, pageContext)%>", 
+              	selector: "#data-table .checkboxes", mustSelect: "请先选择数据！", singleSelect: "该操作只支持单选！"},
+              	<%-- { splitter: true }, 
+                { link: true, display: "删除", css: "icon-trash", showIcon: true, url: "<%=UrlUtil.resolveWithReturnUrl("/wipecostdetail/delete/{0}", requestUrl, requestQuery, pageContext)%>", 
+                  	 selector: "#data-table .checkboxes", mustSelect: "请先选择数据！", confirm: "确认删除所选数据吗？"} --%>
            ]
        });
     });

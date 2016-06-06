@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.km.bean.CostCategory;
-import com.km.bean.Organization;
 import com.km.common.service.impl.TreeServiceImpl;
 import com.km.dao.ICostCategoryDao;
 import com.km.service.ICostCategoryService;
@@ -37,6 +36,20 @@ implements ICostCategoryService
 			String leveCode = entity.getLevelCode();
 			if(leveCode != null && leveCode.equals("1")){
 				map.put(entity.getPkuid(), entity.getCategoryName());
+			}
+		}
+		return map;
+	}
+
+	@Override
+	public Map<Long, String> getSelectCostClass()
+	{
+		Map<Long, String> map=new HashMap<Long, String>();
+		List<CostCategory> entities=baseDao.listAll();
+		for(CostCategory entity : entities){			
+			String leveCode = entity.getLevelCode();
+			if(leveCode != null && leveCode.equals("2")){
+				map.put(entity.getPkuid(), entity.getCategoryName()+" || "+entity.getParent().getCategoryCode()+"_"+entity.getParent().getCategoryName());
 			}
 		}
 		return map;
