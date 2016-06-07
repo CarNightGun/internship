@@ -78,7 +78,7 @@
 				</div>
 				<div class="row-fluid">
 					<p class="span4 gt-left">
-						<a href="<c:url value='/internship/href/resetPassword' />" id="forget-password" >忘记密码?</a>
+						<%-- <a href="<c:url value='/internship/href/resetPassword' />" id="forget-password" >忘记密码?</a> --%>
 						
 					</p>
 

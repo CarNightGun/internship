@@ -84,42 +84,59 @@
                      <div class="caption"><i class="icon-table"></i>${requestScope.permissionMenu.curName}</div>
                   </div>
                   <div class="portlet-body form">
-                     <form:form modelAttribute="contentModel" class="form-horizontal" method="POST">
+                     <form:form modelAttribute="contentModel" class="form-horizontal" enctype="multipart/form-data" method="POST">
                         <div class="form-body">
-                        <div class="form-group">
-                              <label  class="col-md-2 control-label">名称</label>
-                              <div class="col-md-10">
-                                 <form:input path="name" required="required" autofocus="autofocus" class="form-control" placeholder="实习经费计划名称"/><br/>
-                              </div>
-                           </div> 
+                        <form:hidden path="pkuid"/>
                            <div class="form-group">
                               <label  class="col-md-2 control-label">用户名</label>
                               <div class="col-md-10">
-                                 <form:input path="accountName" required="required" class="form-control" placeholder="实习经费计划说明"/><br/>
+	                              <p class="form-control-static">
+	                                 	${contentModel.accountName }
+	                               </p>
+                              
+                              </div>
+                           </div> 
+                        <div class="form-group">
+                              <label  class="col-md-2 control-label">名称</label>
+                              <div class="col-md-10">
+                                 <form:input path="name" required="required" autofocus="autofocus" class="form-control" placeholder="名称"/><br/>
                               </div>
                            </div> 
                            <div class="form-group">
                               <label  class="col-md-2 control-label">电话</label>
                               <div class="col-md-10">
-                                 <form:input path="phone"   required="required" class="form-control" placeholder="如 2015"/><br/>
+                                 <form:input path="phone" type="number" required="required" class="form-control" placeholder="电话"/><br/>
                               </div>
                            </div>  
                            <div class="form-group">
                               <label  class="col-md-2 control-label">性别</label>
                               <div class="col-md-10">
-                                 <form:input path="sex"   required="required" class="form-control" /><br/>
+                              <label class="radio-inline">
+ 									<form:radiobutton path="sex" value="0"/>未知
+								</label>
+								<label class="radio-inline">
+ 									<form:radiobutton path="sex" value="1"/>男 
+								</label>
+								<label class="radio-inline">
+ 									<form:radiobutton path="sex" value="2"/>女 
+								</label>
+ 
                               </div>
                            </div>
                            <div class="form-group">
                               <label  class="col-md-2 control-label">所属机构</label>
                               <div class="col-md-10">
-                                 <form:input path="organization.name"  required="required" class="form-control" /><br/>
+                                 <p class="form-control-static">
+                                 	${contentModel.organization.name == null ? "系统中心" : contentModel.organization.name }
+                                 </p>
                               </div>
                            </div> 
                            <div class="form-group">
                               <label  class="col-md-2 control-label">角色</label>
                               <div class="col-md-10">
-                                 <form:input path="role.name"    required="required" class="form-control" /><br/>
+                               	<p class="form-control-static">
+                                 	${contentModel.role.name }
+                                 </p>
                               </div>
                            </div> 
                            <div class="form-group">
@@ -133,19 +150,26 @@
                            <div class="form-group">
                               <label  class="col-md-2 control-label">邮件</label>
                               <div class="col-md-10">
-                                 <form:input path="email" type="number" min="0" step="0.01" required="required" class="form-control" /><br/>
+                                 <form:input path="email" type="email" min="0" step="0.01" required="required" class="form-control" /><br/>
                               </div>
                            </div> 
                            <div class="form-group">
                               <label  class="col-md-2 control-label">真实姓名</label>
                               <div class="col-md-10">
-                                 <form:input path="realName"   required="required" class="form-control" /><br/>
+                                 <form:input path="realName" minlength ="3" required="required" class="form-control" /><br/>
                               </div>
                            </div> 
                            <div class="form-group">
+                              <label  class="col-md-2 control-label">密码</label>
+                              <div class="col-md-10">
+                                 <form:input path="password" type="password" minlength ="3" required="required" class="form-control"/><br/>
+                              </div>
+                           </div> 
+                           
+                           <div class="form-group">
                               <label  class="col-md-2 control-label">头像</label>
                               <div class="col-md-10">
-                                 <form:input path="photourl" data-toggle="tooltip"  required="required" class="form-control"/><br/>
+                                 <input type="file" name="myfile"  class="form-control" accept="image/png,image/gif,image/jpeg" /> 
                               </div>
                            </div> 
                                                                                    

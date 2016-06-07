@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.km.bean.CostCategory;
 import com.km.bean.CostListDetail;
 import com.km.bean.MajorPlan;
 import com.km.bean.WipeCost;
@@ -223,5 +222,16 @@ public class WipeCostServiceImpl extends BaseServiceImpl<Long, WipeCost, IWipeCo
 			wcd.setLeftPlanAmount(leftPlanAmount);
 		}
 		return _wc;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<WipeCost> getWipeCostsByYear(Long year)
+	{
+		Criteria listCriteria = baseDao.getCriteria();
+		
+		listCriteria.createCriteria("majorPlan").add(Restrictions.eq("planYear",(long)year));
+		
+		return listCriteria.list();
 	}
 }

@@ -1,5 +1,6 @@
 package com.km.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.km.bean.MajorPlan;
@@ -21,5 +22,8 @@ public interface IMajorPlanService extends IBaseService<Long, MajorPlan , IMajor
 	public void updateMajorPlanData(MajorPlan majorPlan);
 
 	public void updateMajorPlanData(Long pkuid);
+	
+	 
+	public List<MajorPlan> getMajorPlansByYear(Long year);
 
 }

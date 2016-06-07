@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.km.common.bean.AbstractBaseEntity;
+import com.km.util.CommonUtil;
 
 /**
  * @author tcn 空幕  email:1623092203@qq.com time:2016年5月31日下午4:39:46
@@ -37,12 +38,12 @@ public class CostListDetail extends AbstractBaseEntity<Long>
 
 	public Double getPrice()
 	{
-		return price;
+		return CommonUtil.formatDouble(price);
 	}
 
 	public void setPrice(Double price)
 	{
-		this.price = price;
+		this.price = CommonUtil.formatDouble(price);
 	}
 
 	public CostCategory getCostCategory()

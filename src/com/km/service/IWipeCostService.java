@@ -1,5 +1,6 @@
 package com.km.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.km.bean.WipeCost;
@@ -29,4 +30,8 @@ public interface IWipeCostService extends IBaseService<Long, WipeCost, IWipeCost
 	
 	
 	public WipeCost getAuditTipWipeCost(Long pkuid);
+	
+	
+	public List<WipeCost> getWipeCostsByYear(Long year);
+	
 }

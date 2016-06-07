@@ -85,8 +85,9 @@
 					  <!-- form 开始-->
 					  <form:form modelAttribute="searchModel" class="form-horizontal" method="GET">
 						 <div class="form-body">
+							
 							<div class="row">
-							   <div class="col-md-6">
+							   <div class="col-md-4">
 								  <div class="form-group">
 									 <label class="control-label col-md-3">报销凭证</label>
 									 <div class="col-md-9">
@@ -97,7 +98,7 @@
 									 </div>
 								  </div>
 							   </div>
-							   <div class="col-md-6">
+							   <div class="col-md-4">
 								  <div class="form-group">
 									 <label class="control-label col-md-3">会计科目</label>
 									 <div class="col-md-9">
@@ -108,8 +109,55 @@
 									 </div>
 								  </div>
 							   </div>
+							   <div class="col-md-4">
+								  <div class="form-group">
+									 <label class="control-label col-md-3">审核状态</label>
+									 <div class="col-md-9">
+										<form:select path="wipeCost.auditState" class="form-control">  
+							                <option value="">请选择</option>  
+							                <form:options items="${selectAuditStateDataSource}"/>  
+						           	 	</form:select>
+									 </div>
+								  </div>
+							   </div>
 							    
 							</div>
+							
+							<div class="row">
+							   <div class="col-md-4">
+								  <div class="form-group">
+									 <label class="control-label col-md-3">专业</label>
+									 <div class="col-md-9">
+										<form:select path="wipeCost.major.pkuid" class="form-control">  
+							                <option value="">请选择</option>  
+							                <form:options items="${selectMajorDataSource}"/>  
+						           	 	</form:select>
+									 </div>
+								  </div>
+							   </div>
+							   <div class="col-md-4">
+								  <div class="form-group">
+									 <label class="control-label col-md-3">实习类别</label>
+									 <div class="col-md-9">
+										<form:select path="internClass" class="form-control">  
+							                <option value="">请选择</option>  
+							                <form:options items="${selectInternClassDataSource}"/>  
+						           	 	</form:select>
+									 </div>
+								  </div>
+							   </div>
+							   <div class="col-md-4">
+								  <div class="form-group">
+									 <label class="control-label col-md-3">年份</label>
+									 <div class="col-md-9">
+										<form:input path="wipeCost.majorPlan.planYear" type="number"  min="2015" step="1" class="form-control placeholder-no-fix" autocomplete="off" placeholder="统计年份"/>
+									 </div>
+								  </div>
+							   </div>
+							    
+							</div>
+							
+ 
 							<div class="form-actions">
 								<div class="row">
 								   <div class="col-md-12">

@@ -20,6 +20,10 @@
 	<bean class="com.km.bean.WipeCost" scope="prototype"/>
 	<bean class="com.km.bean.WipeCostDetail" scope="prototype"/>
 	<bean class="com.km.bean.AuditHistory" scope="prototype"/>
+	<bean class="com.km.bean.AccountingCostCount" scope="prototype"/>
+	<bean class="com.km.bean.PractieCostCount" scope="prototype"/>
+	<bean class="com.km.bean.ZCostCount" scope="prototype"/>
+	<bean class="com.km.bean.CostCountModel" scope="prototype"/>
 			
 			
 			

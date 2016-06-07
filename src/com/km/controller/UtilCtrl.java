@@ -94,8 +94,6 @@ public class UtilCtrl extends BaseController
 		if (!model.containsAttribute(contentModel))
 		{
 			Unit unit = unitService.getEditUtil(pkuid);
-			
-			
 			model.addAttribute(contentModel, unit);
 		}
 		model.addAttribute(requestUrl, request.getServletPath());

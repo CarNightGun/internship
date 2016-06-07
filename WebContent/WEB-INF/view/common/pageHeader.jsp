@@ -23,15 +23,16 @@
 			<!-- 开始用户登录下拉 -->
 			<li class="dropdown user"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown" data-hover="dropdown"
-				data-close-others="true"> <img alt=""
-					src="<c:url value='/images/defaultHead1.jpg'/>"  />&nbsp; <span
+				data-close-others="true"> <img alt="" width="44px" height="33px"
+					src="<c:url value='${sessionScope.userAuth.photourl == null ? "/images/defaultHead1.jpg" : sessionScope.userAuth.photourl }'/>"  />&nbsp; <span
 					class="username">${sessionScope.userAuth.username}</span>&nbsp;-&nbsp;
 					<span class="username">${sessionScope.userAuth.userRole.name}</span>
 					<i class="icon-angle-down"></i>
 			</a>
 				<ul class="dropdown-menu">
-					<!-- <li><a href="extra_profile.html"><i class="icon-user"></i>我的账户</a>
-					</li> -->
+					<%-- <li><a href="<c:url value = '/user/edit/${sessionScope.userAuth.pkuid}'/>"><i class="icon-user"></i>修改个人信息</a>
+					</li> --%>
+					
 					<li class="divider"></li>
 
 					<li><a href="<c:url value = '/user/loginout'/>"><i class="icon-off"></i>注销登录</a></li>

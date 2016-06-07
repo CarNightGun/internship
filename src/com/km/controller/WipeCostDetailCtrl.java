@@ -51,6 +51,15 @@ public class WipeCostDetailCtrl extends BaseController
 		 abc.put(0, "专业实习");
 		 abc.put(1, "毕业实习");
         model.addAttribute("selectInternClassDataSource", abc);  
+        
+        Map<String, String> abcd = new HashMap<String, String>();
+        abcd.put("草稿", "草稿");
+        abcd.put("审核中", "审核中");
+        abcd.put("已通过", "已通过");
+        abcd.put("未通过", "未通过");
+        abcd.put("已确认", "已确认");
+		 model.addAttribute("selectAuditStateDataSource", abcd);  
+        
      } 
 	 
 	@AuthRight
@@ -63,6 +72,7 @@ public class WipeCostDetailCtrl extends BaseController
         int pageNo = ServletRequestUtils.getIntParameter(request, PageUtil.NAME_PAGE_NO, PageUtil.DEFAULT_PAGE_NO);
         int pageSize = ServletRequestUtils.getIntParameter(request, PageUtil.NAME_PAGE_SIZE, PageUtil.DEFAULT_PAGE_SIZE);      
         
+        model.addAttribute("selectMajorDataSource", organizationService.getSelectMajor());
         model.addAttribute("selectWipeCostDataSource", wipeCostService.getSelectWipeCost());
         model.addAttribute("selectCostCategoryDataSource", costCategoryService.getSelectCostCategory());
         

@@ -11,12 +11,14 @@ public class UserAuth
 	private String name;
 	private String username;
 	private UserRole userRole;
+	private String photourl;
 
-	public UserAuth(Long pkuid, String name, String username)
+	public UserAuth(Long pkuid, String name, String username,String photourl)
 	{
 		this.pkuid = pkuid;
 		this.name = name;
 		this.username = username;
+		this.photourl = photourl;
 	}
 
 	public Long getPkuid()
@@ -57,6 +59,16 @@ public class UserAuth
 	public void setUserRole(UserRole userRole)
 	{
 		this.userRole = userRole;
+	}
+
+	public String getPhotourl()
+	{
+		return photourl;
+	}
+
+	public void setPhotourl(String photourl)
+	{
+		this.photourl = photourl;
 	}
 
 }

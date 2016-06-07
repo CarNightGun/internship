@@ -167,4 +167,15 @@ public class MajorPlanServiceImpl extends BaseServiceImpl<Long, MajorPlan, IMajo
 		}	
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MajorPlan> getMajorPlansByYear(Long year)
+	{
+		Criteria listCriteria = baseDao.getCriteria();
+		
+		listCriteria.add(Restrictions.eq("planYear",(long)year));
+		
+		return listCriteria.list();
+	}
+
 }

@@ -75,8 +75,15 @@
          <!-- 结束页面头部-->
          
          <div class="clearfix"></div>
-         <div class="row">      
+         <div class="row">
+         <c:choose>
+         	<c:when test="${empty editUserInfomation }">
             	<h1 class="text-center">欢迎您, ${sessionScope.userAuth.username} !</h1>
+         	</c:when>
+         	<c:when test="${not empty editUserInfomation }">
+         		<h1 class="text-center">${sessionScope.userAuth.username},${editUserInfomation } !</h1>
+         	</c:when>
+         </c:choose>
          </div>
     
       </div>

@@ -1,15 +1,21 @@
 package com.km.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,11 +25,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.km.bean.Authority;
 import com.km.bean.CostPlan;
 import com.km.bean.User;
 import com.km.common.controller.BaseController;
+import com.km.util.SpringUtil;
 import com.km.util.StringUtil;
 import com.km.util.auth.AuthUtil;
 import com.km.util.page.PageUtil;
@@ -84,7 +93,7 @@ public class UserCtrl extends BaseController
 			return login(model);
 		}
 
-		UserAuth userAuth = new UserAuth(user.getPkuid(), user.getName(), user.getAccountName());
+		UserAuth userAuth = new UserAuth(user.getPkuid(), user.getName(), user.getAccountName(),user.getPhotourl());
 		UserRole userRole = new UserRole(user.getRole().getPkuid(), user.getRole().getName());
 
 		List<Authority> roleAuthorities = user.getRole().getAuthorities();
@@ -238,34 +247,135 @@ public class UserCtrl extends BaseController
 	
 	
 	@AuthRight
-	@RequestMapping(value = "/edit/{id}", method =
+	@RequestMapping(value = "/edit", method =
 	{ RequestMethod.GET })
-	public String edit(HttpServletRequest request, Model model,@Valid @PathVariable(value="id")Long pkuid)
+	public String edit(HttpServletRequest request, Model model)
 	{
-		if (!model.containsAttribute(contentModel))
-		{
-			User user = userService.get(pkuid);
-			model.addAttribute(contentModel, user);
-		}
+//		if (!model.containsAttribute(contentModel))
+//		{
+//		}
+		Long pkuid = AuthUtil.getSessionUserAuth(request).getPkuid();
+		User user = userService.get(pkuid);
+		model.addAttribute(contentModel, user);
 		return "user/edit";
 	}
 	
 	@AuthRight
-	@RequestMapping(value = "/edit/{id}", method =
+	@RequestMapping(value = "/edit", method =
 	{ RequestMethod.POST })
 	public String edit(HttpServletRequest request, Model model,
-			@Valid @ModelAttribute("contentModel") User editModel, BindingResult result,@Valid @PathVariable(value="id")Long pkuid)
+			@Valid @ModelAttribute("contentModel") User editModel, BindingResult result,@RequestParam(value = "myfile") MultipartFile file)
 	{
 		if (result.hasErrors()){
-			return edit(request, model, pkuid);
+			return edit(request, model);
 		}
+		User user = userService.get(AuthUtil.getSessionUserAuth(request).getPkuid());
+		String photourl = null;
+		if(file !=null){
+			String fileName = file.getOriginalFilename();
+			if("" != fileName.trim()){
+				fileName = "userphoto"+user.getPkuid()+"-"+fileName;
+				String path=request.getSession().getServletContext().getRealPath("/hsrc/upload/userphoto");
+				
+				File localFile = new File(path+"/"+fileName);
+				try
+				{
+					file.transferTo(localFile);
+					photourl = "/upload/userphoto/"+fileName;
+				} catch (Exception e)
+				{
+					e.printStackTrace();
+				} 
+			}
+		}
+		
+		user.setPhotourl(photourl);
+		user.setName(editModel.getName());
+		user.setPhone(editModel.getPhone());
+		user.setEmail(editModel.getEmail());
+		user.setPassword(editModel.getPassword());
+		user.setSex(editModel.getSex());
+		
+//		String returnUrl = ServletRequestUtils.getStringParameter(request, "returnUrl", null);
+		userService.update(user);
+		
+		model.addAttribute("editUserInfomation", "修改信息成功");
+		return "/home/index";
+	}
+	
+	
+	@AuthRight
+	@RequestMapping(value = "/add", method =
+	{ RequestMethod.GET })
+	public String add(HttpServletRequest request, Model model )
+	{
+		if(!model.containsAttribute(contentModel)){
+			UserAuthorizeModel userBindModel=UserAuthorizeModelExtra.toUserBindModel(SpringUtil.getObject(User.class));
+            model.addAttribute(contentModel, userBindModel);
+        }	
 
+		String expanded = ServletRequestUtils.getStringParameter(request, "expanded", null);
+		List<TreeModel> children=TreeModelExtra.ToTreeModels(organizationService.listTree(), null, null, StringUtil.toIntegerList( expanded, ","));		
+		List<TreeModel> treeModels=new ArrayList<TreeModel>(Arrays.asList(new TreeModel("0","0","计算机学院实习经费管理及审计系统",false,false,false,children)));	
+		
+		String jsonString  = JSONArray .fromObject(treeModels, new JsonConfig()).toString();
+		model.addAttribute(treeDataSource, jsonString);
+		model.addAttribute(selectDataSource, roleService.getSelectSource());
+		
+        return "user/add";
+	}
+	
+	@AuthRight
+	@RequestMapping(value="/add", method = {RequestMethod.POST})
+	public String add(HttpServletRequest request, Model model, @Valid @ModelAttribute("contentModel") UserAuthorizeModel userAuthorizeModel, BindingResult result){
+		if(result.hasErrors()){
+            return add(request, model);
+		}
+		User user = SpringUtil.getObject(User.class);
+
+		user.setAccountName(userAuthorizeModel.getUsername());
+		user.setName(userAuthorizeModel.getName());
+		user.setPassword(userAuthorizeModel.getUsername());
+		
+		
+		Long id = userService.save(user);
+		
+		userService.updateRoleOrg(id, userAuthorizeModel.getRoleId(), userAuthorizeModel.getOrganizationId());       
+        String returnUrl = ServletRequestUtils.getStringParameter(request, "returnUrl", null);
+        if(returnUrl==null)
+        	returnUrl="user/list";
+    	return "redirect:"+returnUrl; 	
+	}
+	
+	@AuthRight
+	@RequestMapping(value = "/passwordreset/{id}", method =
+	{ RequestMethod.GET })
+	public String passwordreset(HttpServletRequest request,HttpServletResponse response, Model model,@Valid @PathVariable(value="id")Long pkuid)
+	{
+ 
+		User user = userService.get(pkuid);
+		String password = RandomStringUtils.randomAlphanumeric(6);
+		user.setPassword(password);
 		String returnUrl = ServletRequestUtils.getStringParameter(request, "returnUrl", null);
-
-		userService.update(editModel);
-		if (returnUrl == null)
-			returnUrl = "costplan/list";
-		return "redirect:" + returnUrl;
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out;
+		try
+		{
+			userService.update(user);
+			out = response.getWriter();
+			out.print(" <script language='javascript'>alert('密码重置成功！请牢记并通知用户,密码 :  "+password+"');window.location='/internship/"+ returnUrl.toString() +"';</script>");
+			out.flush();
+			out.close();
+			return null;
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		
+		 if(returnUrl==null)
+	        	returnUrl="user/list";
+	    	return "redirect:"+returnUrl;
 	}
 	
 	

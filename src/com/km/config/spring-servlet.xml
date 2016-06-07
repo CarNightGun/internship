@@ -38,6 +38,7 @@
 	<mvc:resources mapping="/fonts/**" location="/hsrc/fonts/" />
 	<mvc:resources mapping="/plugins/**" location="/hsrc/plugins/" />
 	<mvc:resources mapping="/images/**" location="/hsrc/images/" />
+	<mvc:resources mapping="/upload/**" location="/hsrc/upload/" />
 
 
 	<!-- 配置拦截器 -->

@@ -67,6 +67,27 @@ public class WipeCostDetailServiceImpl extends BaseServiceImpl<Long, WipeCostDet
 				countCriteria.createCriteria("accounting").add(Restrictions.eq("pkuid", search.getAccounting().getPkuid()));
 				listCriteria.createCriteria("accounting").add(Restrictions.eq("pkuid", search.getAccounting().getPkuid()));
 			}
+			
+			if(search.getWipeCost() != null && !"".equals(search.getWipeCost().getAuditState()) && search.getWipeCost().getAuditState() != null){
+				countCriteria.createCriteria("wipeCost").add(Restrictions.eq("auditState", search.getWipeCost().getAuditState()));
+				listCriteria.createCriteria("wipeCost").add(Restrictions.eq("auditState", search.getWipeCost().getAuditState()));
+			}
+			
+			if(search.getWipeCost() != null && search.getWipeCost().getMajor() != null && search.getWipeCost().getMajor().getPkuid() != null){
+				countCriteria.createCriteria("wipeCost").createCriteria("major").add(Restrictions.eq("pkuid", search.getWipeCost().getMajor().getPkuid()));
+				listCriteria.createCriteria("wipeCost").createCriteria("major").add(Restrictions.eq("pkuid", search.getWipeCost().getMajor().getPkuid()));
+			}
+			
+			if(search.getInternClass() != null){
+				countCriteria.add(Restrictions.eq("internClass", search.getInternClass()));
+				listCriteria.add(Restrictions.eq("internClass", search.getInternClass()));
+			}
+			
+			if(search.getWipeCost() != null && search.getWipeCost().getMajorPlan() != null && search.getWipeCost().getMajorPlan().getPlanYear() != null){
+				countCriteria.createCriteria("wipeCost").createCriteria("majorPlan").add(Restrictions.eq("planYear", search.getWipeCost().getMajorPlan().getPlanYear()));
+				listCriteria.createCriteria("wipeCost").createCriteria("majorPlan").add(Restrictions.eq("planYear", search.getWipeCost().getMajorPlan().getPlanYear()));
+			}
+			
 
 		}
 

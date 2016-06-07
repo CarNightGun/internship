@@ -17,11 +17,11 @@
    
    <!-- 引入样式文件 -->
    <%@ include file="../common/importCss.jsp"%>
+   
    <!-- 引入js文件 -->
    <%@ include file="../common/importJs.jsp"%>
-   
-   
-  <!--  <link rel="shortcut icon" href="favicon.ico" /> -->
+  <!--  
+   <link rel="shortcut icon" href="favicon.ico" /> -->
 </head>
 <!-- 结束头部 -->
 
@@ -51,7 +51,7 @@
                
                <!-- 开始页面的标题和面包屑-->
                <h3 class="page-title">
-                  	权限管理 <small>中心</small>
+                  	用户管理 <small>中心</small>
                </h3>
                <ul class="page-breadcrumb breadcrumb">
                   <li>
@@ -78,9 +78,9 @@
         <!--  开始页面内容 -->
           <div class="row">
             <div class="col-md-12">
-            
+          
                <!-- 开始表单-->
-               <div class="portlet box light-grey">
+               <div class="portlet">
                   <div class="portlet-title">
                      <div class="caption"><i class="icon-table"></i>${requestScope.permissionMenu.curName}</div>
                   </div>
@@ -88,60 +88,41 @@
                      <form:form modelAttribute="contentModel" class="form-horizontal" method="POST">
                         <div class="form-body">
                            <div class="form-group">
-                              <label  class="col-md-2 control-label">名称</label>
+                              <label  class="col-md-2 control-label">姓名</label>
                               <div class="col-md-10">
-                                 <form:input path="name" class="form-control" placeholder="名称"/><br/>
-                                 <form:errors path="name" class="field-has-error"></form:errors>
-                              </div>
-                           </div>  
-                           <div class="form-group">
-                              <label  class="col-md-2 control-label">位置</label>
-                              <div class="col-md-10">
-                                 <form:input path="sorting" class="form-control" placeholder="位置"/><br/>
-                                 <form:errors path="sorting" class="field-has-error"></form:errors>
+                            	 <form:input path="name" required="required" autofocus="autofocus" class="form-control" placeholder="姓名"/><br/>
                               </div>
                            </div>
-                          <%--  <div class="form-group">
-                              <label  class="col-md-2 control-label">值</label>
+                            <div class="form-group">
+                              <label  class="col-md-2 control-label">用户名</label>
                               <div class="col-md-10">
-                                 <form:input path="theValue" class="form-control" placeholder="值"/>
-                              </div>
-                           </div> --%>
-                           <div class="form-group">
-                              <label  class="col-md-2 control-label">Url</label>
-                              <div class="col-md-10">
-                                 <form:input path="url" class="form-control" placeholder="Url"/><br/>
-                                 <form:errors path="url" class="field-has-error"></form:errors>
+                                 <form:input path="username" required="required"  class="form-control" placeholder="用户名"/><br/>
                               </div>
                            </div>
                            <div class="form-group">
-                              <label  class="col-md-2 control-label">MatchUrl</label>
+                              <label  class="col-md-2 control-label">绑定角色</label>
                               <div class="col-md-10">
-                                 <form:input path="matchUrl" class="form-control" placeholder="MatchUrl"/><br/>
-                                 <form:errors path="matchUrl" class="field-has-error"></form:errors>
+                                 <form:select path="roleId" class="form-control" required="required">  
+					                <option value="">请选择</option>  
+					                <form:options items="${selectDataSource}"/>  
+					           	 </form:select>
                               </div>
                            </div>
-                           <!-- <div class="form-group"> -->
-                             <!--  <label  class="col-md-2 control-label">图标</label> -->
-                             <!--  <div class="col-md-10"> -->
-                                 <form:hidden path="itemIcon" class="form-control" placeholder="图标"/>
-                              <!-- </div> -->
-                         <!--   </div> -->
+                           
                            <div class="form-group">
-                              <label  class="col-md-2 control-label">隶属于</label>
+                              <label  class="col-md-2 control-label">绑定组织机构</label>
                               <div class="col-md-10">
                                  <div class="portlet">
 					                  <div class="portlet-body">
 				                     	   <c:import url = "../common/treeSelector.jsp">
-												<c:param name="propertyName" value="parentId"/>
-												<c:param name="propertyValue" value="${contentModel.parentId}"/>
-												<c:param name="treeDataSourceName" value="treeDataSource"/>
+											 <c:param name="propertyName" value="organizationId"/>
+											 <c:param name="propertyValue" value="${contentModel.organizationId}"/>
+											 <c:param name="treeDataSourceName" value="treeDataSource"/>
 										   </c:import>
 					                  </div>
 					             </div>
                               </div>
-                           </div>
-                                                          
+                           </div>              
                         </div>
                         <div class="form-actions fluid">
                            <div class="col-md-offset-6 col-md-6">
@@ -149,6 +130,8 @@
                            </div>
                         </div>
                      </form:form>
+                       
+       				 </div>
                   </div>
                </div>
                <!-- 结束表单-->
@@ -158,9 +141,6 @@
     	<!--  结束页面内容 -->
       </div>
       <!-- 结束页面 -->
-      
-   </div>
-   <!-- 结束页面内容 -->
    
    <!-- 页脚 -->
    <%@ include file="../common/pageFooter.jsp"%>
